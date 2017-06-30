@@ -1,23 +1,16 @@
 {
-  "name": "Reu",
+  "name": "survey-demo-app",
   "version": "1.0.0",
-  "description": "JavaScript Code",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/vaishnavi789/Reu.git"
-  },
-  "keywords": [],
-  "author": "",
+  "author": "Vaishnavi",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/vaishnavi789/Reu/issues"
-  },
-  "homepage": "https://github.com/vaishnavi789/Reu#readme",
   "dependencies": {
-    "debug-log": "^1.0.1"
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "firebase-admin": "^5.0.0"
   }
 }
