@@ -1,6 +1,9 @@
 {
   "name": "Reu",
   "version": "1.0.0",
+  "dependencies": {
+     "my_dep": "^1.0.0"
+  },
   "description": "JavaScript Code",
   "main": "index.js",
   "scripts": {
