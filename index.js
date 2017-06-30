@@ -204,7 +204,29 @@ getAllQuestion().then(function(returnVal){
                     monitorAnswers.push(req.body.result.parameters.yesno);
                 }
 
-                monitorCount++;
+                if (4 >= sugarLevel <= 8.5){
+                monitorCount ++;
+               } else if (sugarLevel > 8.5){
+                var a = 1;
+                for(a = 0; a < monitoring.length; a++){
+                if (nonitoring[i] == monitoring[2]){
+                  a += 1;
+                  if (a > monitoring.length -1){
+                    monitorCount = 0;
+                  }
+                }
+                }
+               }else{
+                var a = 1;
+                for(a = 0; a < monitoring.length; a++){
+                if (nonitoring[i] == monitoring[3]){
+                  a += 2;
+                  if (a > monitoring.length -1){
+                    monitorCount = 0;
+                  }
+                }
+                }
+                }          
                 break;
 
             case "coping.continue":
