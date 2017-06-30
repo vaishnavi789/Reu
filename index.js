@@ -1,3 +1,22 @@
+Skip to content
+This repository
+Search
+Pull requests
+Issues
+Marketplace
+Gist
+ @vaishnavi789
+ Sign out
+ Watch 0
+  Star 0
+  Fork 1 amylynncheng/extended-q
+ Code  Issues 0  Pull requests 0  Projects 0  Wiki Insights 
+Branch: master Find file Copy pathextended-q/index.js
+0dd5483  4 minutes ago
+@amylynncheng amylynncheng Update index.js
+1 contributor
+RawBlameHistory     
+283 lines (246 sloc)  10.4 KB
 'use strict';
 
 const express = require('express');
@@ -26,28 +45,6 @@ function getAllQuestion() {
         }
         return monitoringQuestions;
     })
-
-//   function branchMonitoring(sugar,monitoringQuestions){
-// //array is linear. Rearange elements based upon specific conditions
-// //sugar is response as number to  title element in question 1
-//    if(sugar >= 8.5){
-//      for(var i in monitoringQuestions){
-//        monitoringQuestions.high = high;
-//      }
-//    }
-//    else if (4<=sugar<=8.5) {
-//      for(var i in monitoringQuestions){
-//        monitoringQuestions.good = good;
-//      }
-//   }
-//    else{
-//      for(var i in monitoringQuestions){
-//        monitoringQuestions.low = low;
-//      }
-//    }
-//
-//    }
-
     var afterCoping = afterMonitoring.then(function (monitoringQuestions) {
         var data = {}
         data['monitoring'] = monitoringQuestions
@@ -156,8 +153,20 @@ function copingResult(answers) {
 
 var monitorCount = 0;
 var copingCount = 0;
-var monitorAnswers = []; //Store monitor answers
+var monitorAnswers = [];
 var copeAnswers = [];
+var date = 0;
+
+// function writeAnswers(monitorAnswers, copeAnswers) {
+//     var fb = firebase.database().ref('/monitoringAnswers/patient1');         
+//         fb.set({
+//            date: monitorAnswers;
+//         }).then(function(ref) {
+//            console.log(ref);
+//         }, function(error) {
+//            console.log("Error:", error);
+//         });
+// }
 
 getAllQuestion().then(function(returnVal){
     monitoring = returnVal.monitoring
@@ -197,7 +206,10 @@ getAllQuestion().then(function(returnVal){
                     var medication = monitorAnswers[2];
                     var exercise = monitorAnswers[3];
                     var weight = monitorAnswers[4];
-                  //  console.log(monitorAnswers);
+                    console.log(monitorAnswers);
+                    date = req.body.timestamp;
+                    console.log(date);
+                     
                     text = "I'll get this logged for you ASAP. "
                         + monitorResult(ate, sugarLevel, exercise, weight);
                     //+ "What else can I do for you?";
@@ -210,34 +222,9 @@ getAllQuestion().then(function(returnVal){
                 } else if (req.body.result.parameters.yesno.length != 0) {
                     monitorAnswers.push(req.body.result.parameters.yesno);
                 }
-                            monitorCount ++;
-//                 if (4 >= sugarLevel <= 8.5){
-//                 console.log(monitoring[monitorCount]);
-//                 monitorCount ++;
-//                } else if (sugarLevel > 8.5){
-//                 var a = 1;
-//                 for(a = 0; a < monitoring.length; a++){
-//                 console.log(monitoring[monitorCount]);
-//                 if (nonitoring[i] == monitoring[2]){
-//                   a += 1;
-//                   if (a > monitoring.length -1){
-//                     monitorCount = 0;
-//                   }
-//                 }
-//                 }
-//                }else{
-//                 var a = 1;
-//                 for(a = 0; a < monitoring.length; a++){
-//                 console.log(monitoring[monitorCount]);
-//                 if (nonitoring[i] == monitoring[3]){
-//                   a += 2;
-//                   if (a > monitoring.length -1){
-//                     monitorCount = 0;
-//                   }
-//                 }
-//                 }
-//                 }
-               break;
+
+                monitorCount++;
+                break;
 
             case "coping.continue":
                 action = "start.coping";
@@ -299,7 +286,7 @@ getAllQuestion().then(function(returnVal){
         return res.json({
             speech: text,
             displayText: text,
-            source: "Reu"
+            source: "survey-demo-app"
         });
     });
 
@@ -312,3 +299,5 @@ getAllQuestion().then(function(returnVal){
     });
 
 });
+Contact GitHub API Training Shop Blog About
+© 2017 GitHub, Inc. Terms Privacy Security Status Help
