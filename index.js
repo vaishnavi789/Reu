@@ -1,22 +1,3 @@
-Skip to content
-This repository
-Search
-Pull requests
-Issues
-Marketplace
-Gist
- @vaishnavi789
- Sign out
- Watch 0
-  Star 0
-  Fork 1 amylynncheng/extended-q
- Code  Issues 0  Pull requests 0  Projects 0  Wiki Insights 
-Branch: master Find file Copy pathextended-q/index.js
-0dd5483  4 minutes ago
-@amylynncheng amylynncheng Update index.js
-1 contributor
-RawBlameHistory     
-283 lines (246 sloc)  10.4 KB
 'use strict';
 
 const express = require('express');
@@ -299,5 +280,3 @@ getAllQuestion().then(function(returnVal){
     });
 
 });
-Contact GitHub API Training Shop Blog About
-© 2017 GitHub, Inc. Terms Privacy Security Status Help
