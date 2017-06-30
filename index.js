@@ -210,33 +210,33 @@ getAllQuestion().then(function(returnVal){
                 } else if (req.body.result.parameters.yesno.length != 0) {
                     monitorAnswers.push(req.body.result.parameters.yesno);
                 }
-
-                if (4 >= sugarLevel <= 8.5){
-                console.log(monitoring[monitorCount]);
-                monitorCount ++;
-               } else if (sugarLevel > 8.5){
-                var a = 1;
-                for(a = 0; a < monitoring.length; a++){
-                console.log(monitoring[monitorCount]);
-                if (nonitoring[i] == monitoring[2]){
-                  a += 1;
-                  if (a > monitoring.length -1){
-                    monitorCount = 0;
-                  }
-                }
-                }
-               }else{
-                var a = 1;
-                for(a = 0; a < monitoring.length; a++){
-                console.log(monitoring[monitorCount]);
-                if (nonitoring[i] == monitoring[3]){
-                  a += 2;
-                  if (a > monitoring.length -1){
-                    monitorCount = 0;
-                  }
-                }
-                }
-                }
+                            monitorCount ++;
+//                 if (4 >= sugarLevel <= 8.5){
+//                 console.log(monitoring[monitorCount]);
+//                 monitorCount ++;
+//                } else if (sugarLevel > 8.5){
+//                 var a = 1;
+//                 for(a = 0; a < monitoring.length; a++){
+//                 console.log(monitoring[monitorCount]);
+//                 if (nonitoring[i] == monitoring[2]){
+//                   a += 1;
+//                   if (a > monitoring.length -1){
+//                     monitorCount = 0;
+//                   }
+//                 }
+//                 }
+//                }else{
+//                 var a = 1;
+//                 for(a = 0; a < monitoring.length; a++){
+//                 console.log(monitoring[monitorCount]);
+//                 if (nonitoring[i] == monitoring[3]){
+//                   a += 2;
+//                   if (a > monitoring.length -1){
+//                     monitorCount = 0;
+//                   }
+//                 }
+//                 }
+//                 }
                break;
 
             case "coping.continue":
