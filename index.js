@@ -141,7 +141,7 @@ function copingResult(answers) {
             score += 1;
         }
     }
-  //  console.log(score);
+    console.log(score);
 
     if (score > 11 && score <= 16) {
         result += "You are showing signs of severe depression. Please consider asking your doctor for help. ";
@@ -251,7 +251,7 @@ getAllQuestion().then(function(returnVal){
                     }
                     copingCount = 0;
 
-                //    console.log(copeAnswers);
+                    console.log(copeAnswers);
                     text = "Thank you for answering my questions. "
                         + copingResult(copeAnswers);
 
