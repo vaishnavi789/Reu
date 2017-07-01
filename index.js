@@ -174,7 +174,7 @@ getAllQuestion().then(function(returnVal){
 
 
             case "start.monitor":
-                if (monitorCount >= monitoring.length) {
+                if (mCount >= monitoring.length) {
                     if (req.body.result.parameters.number.length != 0) {
                         monitorAnswers.push(req.body.result.parameters.number);
                     } else if (req.body.result.parameters.yesno.length != 0) {
@@ -196,7 +196,7 @@ getAllQuestion().then(function(returnVal){
                     //+ "What else can I do for you?";
                     break;
                 }
-                text = monitoring[monitorCount].title;
+                text = monitoring[mCount].title;
 
                 if (req.body.result.parameters.number.length != 0) {
                     monitorAnswers.push(req.body.result.parameters.number);
@@ -206,7 +206,7 @@ getAllQuestion().then(function(returnVal){
 
                 if (ate == "yes" &&  sugarLevel < 8.5){
                   //normal linear
-                  mCount ++;
+                    mCount ++;
                }else if (ate == "no" && 4>= sugarLevel <= 7){
                   //normal linear
                     mCount ++;
@@ -218,14 +218,11 @@ getAllQuestion().then(function(returnVal){
                   mCount ++;
                  }else{
                  //low
-                for(i = 0; i < monitoring.length; mCount++){
-                if (monitoring[i] == monitoring[3]){
-                  mCount += 1;
+                for(mCount = 0; mCount < monitoring.length; mCount++){
+                 if (monitoring[mCount] == monitoring[3]){
+                  continue;
                 }
                 }
-                // if (i > monitoring.length -1){
-                //   mCount = 0;
-                // }
                 }
               break;
 
