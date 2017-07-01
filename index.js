@@ -203,43 +203,44 @@ getAllQuestion().then(function(returnVal){
                 } else if (req.body.result.parameters.yesno.length != 0) {
                     monitorAnswers.push(req.body.result.parameters.yesno);
                 }
-
-                if (mCount == 1){ //2nd Question  mCount = 0,1,2,3,4
-                var ate = monitorAnswers[0]; //Store yes and no into ate
-                var sugarLevel = monitorAnswers[1]; //Store numbers into level
-                if (ate == "yes" &&  sugarLevel < 8.5){
-                    for(i = mCount; i < monitoring.length - 1; i ++ ){
-                  //normal linear
-                    console.log(monitoring[mCount]);
-                  }
-               }
-               else if (ate == "no" && 4 >= sugarLevel <= 7){
-                 for(i = mCount; i < monitoring.length - 1; i++ ){
-                  //normal linear
-                  console.log(monitoring[mCount]);
-                  }
-               }else if (ate == "no" &&  sugarLevel > 7){
-                 for(i = mCount; i < monitoring.length - 1; i++ ){
-                  //high go through all five. Add more
-                  console.log(monitoring[mCount]);
-                }
-               }
-               else if (ate == "yes" && sugarLevel >= 8.5){
-                 for(i = mCount; i < monitoring.length - 1; i++ ){
-                 //high go through all. Add more
-                  console.log(monitoring[mCount]);
-                }
-                 }
-                 else{
-                 //low
-                for(i = mCount; i < monitoring.length -1; i++){
-                  console.log(monitoring[mCount]);
-                 if (monitoring[mCount] == monitoring[3]){
-                  continue;
-                }
-                }
-                }
-              }
+                   mCount++;
+          
+//                 if (mCount == 1){ //2nd Question  mCount = 0,1,2,3,4
+//                 var ate = monitorAnswers[0]; //Store yes and no into ate
+//                 var sugarLevel = monitorAnswers[1]; //Store numbers into level
+//                 if (ate == "yes" &&  sugarLevel < 8.5){
+//                     for(i = mCount; i < monitoring.length - 1; i ++ ){
+//                   //normal linear
+//                     console.log(monitoring[mCount]);
+//                   }
+//                }
+//                else if (ate == "no" && 4 >= sugarLevel <= 7){
+//                  for(i = mCount; i < monitoring.length - 1; i++ ){
+//                   //normal linear
+//                   console.log(monitoring[mCount]);
+//                   }
+//                }else if (ate == "no" &&  sugarLevel > 7){
+//                  for(i = mCount; i < monitoring.length - 1; i++ ){
+//                   //high go through all five. Add more
+//                   console.log(monitoring[mCount]);
+//                 }
+//                }
+//                else if (ate == "yes" && sugarLevel >= 8.5){
+//                  for(i = mCount; i < monitoring.length - 1; i++ ){
+//                  //high go through all. Add more
+//                   console.log(monitoring[mCount]);
+//                 }
+//                  }
+//                  else{
+//                  //low
+//                 for(i = mCount; i < monitoring.length -1; i++){
+//                   console.log(monitoring[mCount]);
+//                  if (monitoring[mCount] == monitoring[3]){
+//                   continue;
+//                 }
+//                 }
+//                 }
+//               }
               break;
 
             case "coping.continue":
