@@ -212,21 +212,25 @@ getAllQuestion().then(function(returnVal){
                        mCount++;
                     if(mCount > monitoring.length -1){
                         mCount = 0;
+                        break;
                     }
                }else if (ate == "no" && 4 >= sugarLevel <= 7){
                   mCount++;
                  if(mCount > monitoring.length -1){
                   mCount = 0;
+                       break;
                 }
                }else if (ate == "no" &&  sugarLevel > 7){
                    mCount++;
                  if(mCount > monitoring.length -1){
                    mCount = 0;
+                      break;
                 }
                }else if (ate == "yes" && sugarLevel >= 8.5){
                   mCount++;
                   if(mCount > monitoring.length -1){
                    mCount = 0;
+                      break;
                   }
                }else{
                   mCount++;
@@ -235,10 +239,10 @@ getAllQuestion().then(function(returnVal){
                  }
                 if (mCount > monitoring.length -1){
                  mCount = 0;
+                     break;
                 }
                 }
                 }
-                break;
 
             case "coping.continue":
                 action = "start.coping";
