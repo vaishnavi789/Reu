@@ -174,15 +174,15 @@ getAllQuestion().then(function(returnVal){
 
 
             case "start.monitor":
-                if (mCount >= monitoring.length) {
-                    if (req.body.result.parameters.number.length != 0) {
-                        monitorAnswers.push(req.body.result.parameters.number);
-                    } else if (req.body.result.parameters.yesno.length != 0) {
-                        monitorAnswers.push(req.body.result.parameters.yesno);
+                if (mCount >= monitoring.length) { //count is greater than monitoring length
+                    if (req.body.result.parameters.number.length != 0) { //valid number
+                        monitorAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
+                    } else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
+                        monitorAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
                     }
-                    mCount = 0;
+                    mCount = 0; //Setting mCount back to zero
 
-                    var ate = monitorAnswers[0];
+                    var ate = monitorAnswers[0];     //Storing answers at the end
                     var sugarLevel = monitorAnswers[1];
                     var medication = monitorAnswers[2];
                     var exercise = monitorAnswers[3];
@@ -198,49 +198,51 @@ getAllQuestion().then(function(returnVal){
                 }
                 text = monitoring[mCount].title;
 
-                if (req.body.result.parameters.number.length != 0) {
-                    monitorAnswers.push(req.body.result.parameters.number);
-                } else if (req.body.result.parameters.yesno.length != 0) {
-                    monitorAnswers.push(req.body.result.parameters.yesno);
+                if (req.body.result.parameters.number.length != 0) {  //if param length number is valid
+                    monitorAnswers.push(req.body.result.parameters.number); // push to monitor answ
+                } else if (req.body.result.parameters.yesno.length != 0) {  //if yes/no is valid
+                    monitorAnswers.push(req.body.result.parameters.yesno);  //push to answers
                 }
+                  mCount++; //iterate through each question //0,1,2,3,4
+
+                if (mCount == 1){ //2nd Question  mCount = 0,1,2,3,4
+                var ate = monitorAnswers[0]; //Store yes and no into ate
+                var sugarLevel = monitorAnswers[1]; //Store numbers into level
+                if (ate == "yes" &&  sugarLevel < 8.5){
+                       mCount++;
+                    if(mCount > monitoring.length -1){
+                        mCount = 0;
+                    }
+               }
+               else if (ate == "no" && 4 >= sugarLevel <= 7){
+                  mCount++;
+                 if(mCount > monitoring.length -1){
+                  mCount = 0;
+                }
+               }else if (ate == "no" &&  sugarLevel > 7){
+                  mCount++;
+              if(mCount > monitoring.length -1){
+                  mCount = 0;
+              }
+               }
+               else if (ate == "yes" && sugarLevel >= 8.5){
+                  mCount++;
+                if(mCount > monitoring.length -1){
+                  mCount = 0;
+               }
+                 }
+                 else{
+                 //low
                    mCount++;
-          
-//                 if (mCount == 1){ //2nd Question  mCount = 0,1,2,3,4
-//                 var ate = monitorAnswers[0]; //Store yes and no into ate
-//                 var sugarLevel = monitorAnswers[1]; //Store numbers into level
-//                 if (ate == "yes" &&  sugarLevel < 8.5){
-//                     for(i = mCount; i < monitoring.length - 1; i ++ ){
-//                   //normal linear
-//                     console.log(monitoring[mCount]);
-//                   }
-//                }
-//                else if (ate == "no" && 4 >= sugarLevel <= 7){
-//                  for(i = mCount; i < monitoring.length - 1; i++ ){
-//                   //normal linear
-//                   console.log(monitoring[mCount]);
-//                   }
-//                }else if (ate == "no" &&  sugarLevel > 7){
-//                  for(i = mCount; i < monitoring.length - 1; i++ ){
-//                   //high go through all five. Add more
-//                   console.log(monitoring[mCount]);
-//                 }
-//                }
-//                else if (ate == "yes" && sugarLevel >= 8.5){
-//                  for(i = mCount; i < monitoring.length - 1; i++ ){
-//                  //high go through all. Add more
-//                   console.log(monitoring[mCount]);
-//                 }
-//                  }
-//                  else{
-//                  //low
-//                 for(i = mCount; i < monitoring.length -1; i++){
-//                   console.log(monitoring[mCount]);
-//                  if (monitoring[mCount] == monitoring[3]){
-//                   continue;
-//                 }
-//                 }
-//                 }
-//               }
+                 if (monitoring[mCount] == monitoring[3]){
+                  continue;
+                }
+                else if(mCount > monitoring.length -1){
+                 mCount = 0;
+                }
+                }
+                }
+              }
               break;
 
             case "coping.continue":
