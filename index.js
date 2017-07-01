@@ -204,9 +204,12 @@ getAllQuestion().then(function(returnVal){
                     monitorAnswers.push(req.body.result.parameters.yesno);
                 }
 
+                if (mCount == 1){
+                var ate = monitorAnswers[0]; //These are answers that you store
+                var sugarLevel = monitorAnswers[1];
                 if (ate == "yes" &&  sugarLevel < 8.5){
                   //normal linear
-                    mCount ++;
+                   mCount ++;
                }else if (ate == "no" && 4>= sugarLevel <= 7){
                   //normal linear
                     mCount ++;
@@ -224,6 +227,7 @@ getAllQuestion().then(function(returnVal){
                 }
                 }
                 }
+              }
               break;
 
             case "coping.continue":
