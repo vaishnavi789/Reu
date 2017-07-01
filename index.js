@@ -132,14 +132,14 @@ function copingResult(answers) {
     return result;
 }
 
-var monitorCount = 0;
+var mCount = 0;
 var copingCount = 0;
 var monitorAnswers = [];
 var copeAnswers = [];
 var date = 0;
 
 // function writeAnswers(monitorAnswers, copeAnswers) {
-//     var fb = firebase.database().ref('/monitoringAnswers/patient1');         
+//     var fb = firebase.database().ref('/monitoringAnswers/patient1');
 //         fb.set({
 //            date: monitorAnswers;
 //         }).then(function(ref) {
@@ -180,7 +180,7 @@ getAllQuestion().then(function(returnVal){
                     } else if (req.body.result.parameters.yesno.length != 0) {
                         monitorAnswers.push(req.body.result.parameters.yesno);
                     }
-                    monitorCount = 0;
+                    mCount = 0;
 
                     var ate = monitorAnswers[0];
                     var sugarLevel = monitorAnswers[1];
@@ -190,7 +190,7 @@ getAllQuestion().then(function(returnVal){
                     console.log(monitorAnswers);
                     date = req.body.timestamp;
                     console.log(date);
-                     
+
                     text = "I'll get this logged for you ASAP. "
                         + monitorResult(ate, sugarLevel, exercise, weight);
                     //+ "What else can I do for you?";
@@ -204,30 +204,30 @@ getAllQuestion().then(function(returnVal){
                     monitorAnswers.push(req.body.result.parameters.yesno);
                 }
 
-                if (4 >= sugarLevel <= 8.5){
-                monitorCount ++;
-               } else if (sugarLevel > 8.5){
-                var a = 1;
-                for(a = 0; a < monitoring.length; a++){
-                if (nonitoring[i] == monitoring[2]){
-                  a += 1;
-                  if (a > monitoring.length -1){
-                    monitorCount = 0;
-                  }
+                if (ate == "yes" &&  sugarLevel < 8.5){
+                  //normal linear
+                  mCount ++;
+               }else if (ate == "no" && 4>= sugarLevel <= 7){
+                  //normal linear
+                    mCount ++;
+               }else if (ate == "no" &&  sugarLevel > 7){
+                  //high go through all five. Add more
+                  mCount ++;
+               }else if (ate == "yes" && sugarLevel >= 8.5){
+                 //high go through all. Add more
+                  mCount ++;
+                 }else{
+                 //low
+                for(i = 0; i < monitoring.length; mCount++){
+                if (monitoring[i] == monitoring[3]){
+                  mCount += 1;
                 }
                 }
-               }else{
-                var a = 1;
-                for(a = 0; a < monitoring.length; a++){
-                if (nonitoring[i] == monitoring[3]){
-                  a += 2;
-                  if (a > monitoring.length -1){
-                    monitorCount = 0;
-                  }
+                // if (i > monitoring.length -1){
+                //   mCount = 0;
+                // }
                 }
-                }
-                }          
-                break;
+              break;
 
             case "coping.continue":
                 action = "start.coping";
