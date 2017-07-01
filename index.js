@@ -213,37 +213,32 @@ getAllQuestion().then(function(returnVal){
                     if(mCount > monitoring.length -1){
                         mCount = 0;
                     }
-               }
-               else if (ate == "no" && 4 >= sugarLevel <= 7){
+               }else if (ate == "no" && 4 >= sugarLevel <= 7){
                   mCount++;
                  if(mCount > monitoring.length -1){
                   mCount = 0;
                 }
                }else if (ate == "no" &&  sugarLevel > 7){
-                  mCount++;
-              if(mCount > monitoring.length -1){
-                  mCount = 0;
-              }
-               }
-               else if (ate == "yes" && sugarLevel >= 8.5){
-                  mCount++;
-                if(mCount > monitoring.length -1){
-                  mCount = 0;
-               }
-                 }
-                 else{
-                 //low
                    mCount++;
-                 if (monitoring[mCount] == monitoring[3]){
-                  continue;
+                 if(mCount > monitoring.length -1){
+                   mCount = 0;
                 }
-                else if(mCount > monitoring.length -1){
+               }else if (ate == "yes" && sugarLevel >= 8.5){
+                  mCount++;
+                  if(mCount > monitoring.length -1){
+                   mCount = 0;
+                  }
+               }else{
+                  mCount++;
+                 if (monitoring[mCount] == monitoring[3]){
+                    mCount+=2;
+                 }
+                if (mCount > monitoring.length -1){
                  mCount = 0;
                 }
                 }
                 }
-              }
-              break;
+                break;
 
             case "coping.continue":
                 action = "start.coping";
