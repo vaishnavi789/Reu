@@ -204,24 +204,36 @@ getAllQuestion().then(function(returnVal){
                     monitorAnswers.push(req.body.result.parameters.yesno);
                 }
 
-                if (mCount == 1){
-                var ate = monitorAnswers[0]; //These are answers that you store
-                var sugarLevel = monitorAnswers[1];
+                if (mCount == 1){ //2nd Question  mCount = 0,1,2,3,4
+                var ate = monitorAnswers[0]; //Store yes and no into ate
+                var sugarLevel = monitorAnswers[1]; //Store numbers into level
                 if (ate == "yes" &&  sugarLevel < 8.5){
+                    for(i = mCount; i < monitoring.length - 1; i++ ){
                   //normal linear
-                   mCount ++;
-               }else if (ate == "no" && 4>= sugarLevel <= 7){
+                       mCount ++;
+                  }console.log(monitoring[mCount]);
+               }
+               else if (ate == "no" && 4 >= sugarLevel <= 7){
+                 for(i = mCount; i < monitoring.length - 1; i++ ){
                   //normal linear
-                    mCount ++;
+                      mCount ++;
+                  }
                }else if (ate == "no" &&  sugarLevel > 7){
+                 for(i = mCount; i < monitoring.length - 1; i++ ){
                   //high go through all five. Add more
-                  mCount ++;
-               }else if (ate == "yes" && sugarLevel >= 8.5){
+                    mCount ++;
+                }
+               }
+               else if (ate == "yes" && sugarLevel >= 8.5){
+                 for(i = mCount; i < monitoring.length - 1; i++ ){
                  //high go through all. Add more
-                  mCount ++;
-                 }else{
+                   mCount ++;
+                }
+                 }
+                 else{
                  //low
-                for(mCount = 0; mCount < monitoring.length; mCount++){
+                for(i = mCount; i < monitoring.length -1; i++){
+                  mCount ++;
                  if (monitoring[mCount] == monitoring[3]){
                   continue;
                 }
