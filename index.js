@@ -208,32 +208,32 @@ getAllQuestion().then(function(returnVal){
                 var ate = monitorAnswers[0]; //Store yes and no into ate
                 var sugarLevel = monitorAnswers[1]; //Store numbers into level
                 if (ate == "yes" &&  sugarLevel < 8.5){
-                    for(i = mCount; i < monitoring.length - 1; i++ ){
+                    for(i = mCount; i < monitoring.length - 1; i ++ ){
                   //normal linear
-                       mCount ++;
-                  }console.log(monitoring[mCount]);
+                    console.log(monitoring[mCount]);
+                  }
                }
                else if (ate == "no" && 4 >= sugarLevel <= 7){
                  for(i = mCount; i < monitoring.length - 1; i++ ){
                   //normal linear
-                      mCount ++;
+                  console.log(monitoring[mCount]);
                   }
                }else if (ate == "no" &&  sugarLevel > 7){
                  for(i = mCount; i < monitoring.length - 1; i++ ){
                   //high go through all five. Add more
-                    mCount ++;
+                  console.log(monitoring[mCount]);
                 }
                }
                else if (ate == "yes" && sugarLevel >= 8.5){
                  for(i = mCount; i < monitoring.length - 1; i++ ){
                  //high go through all. Add more
-                   mCount ++;
+                  console.log(monitoring[mCount]);
                 }
                  }
                  else{
                  //low
                 for(i = mCount; i < monitoring.length -1; i++){
-                  mCount ++;
+                  console.log(monitoring[mCount]);
                  if (monitoring[mCount] == monitoring[3]){
                   continue;
                 }
