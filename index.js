@@ -203,44 +203,30 @@ getAllQuestion().then(function(returnVal){
                 } else if (req.body.result.parameters.yesno.length != 0) {  //if yes/no is valid
                     monitorAnswers.push(req.body.result.parameters.yesno);  //push to answers
                 }
-                  mCount++; //iterate through each question //0,1,2,3,4
+                  mCount+=1; //iterate through each question //0,1,2,3,4
 
                 if (mCount == 1){ //2nd Question  mCount = 0,1,2,3,4
                 var ate = monitorAnswers[0]; //Store yes and no into ate
                 var sugarLevel = monitorAnswers[1]; //Store numbers into level
                 if (ate == "yes" &&  sugarLevel < 8.5){
-                       mCount++;
-                    if(mCount > monitoring.length -1){
-                        mCount = 0;
-                        break;
-                    }
+                      mCount++;
+                      break;
                }else if (ate == "no" && 4 >= sugarLevel <= 7){
-                  mCount++;
-                 if(mCount > monitoring.length -1){
-                  mCount = 0;
-                       break;
-                }
+                     mCount++;
+                      break;
                }else if (ate == "no" &&  sugarLevel > 7){
-                   mCount++;
-                 if(mCount > monitoring.length -1){
-                   mCount = 0;
+                      mCount++;
                       break;
-                }
                }else if (ate == "yes" && sugarLevel >= 8.5){
-                  mCount++;
-                  if(mCount > monitoring.length -1){
-                   mCount = 0;
+                     mCount++;
                       break;
-                  }
                }else{
-                  mCount++;
                  if (monitoring[mCount] == monitoring[3]){
                     mCount+=2;
-                 }
-                if (mCount > monitoring.length -1){
-                 mCount = 0;
+                  }
+                  if(mCount > monitoring.length-1){
                      break;
-                }
+                  }
                 }
                 }
 
