@@ -204,6 +204,7 @@ getAllQuestion().then(function(returnVal){
                     monitorAnswers.push(req.body.result.parameters.yesno);  //push to answers
                 }
                  mCount ++; //iterate through each question //0,1,2,3,4
+                  break;
 
                 if (mCount == 1){ //2nd Question  mCount = 0,1,2,3,4
                 var ate = monitorAnswers[0]; //Store yes and no into ate
@@ -221,7 +222,8 @@ getAllQuestion().then(function(returnVal){
                      //high
                      mCount++;
                }else{
-                 if (monitoring[mCount] == monitoring[3]){
+                     mCount++;
+                 if (monitoring[mCount] == monitoring[mCount + 2]){
                      mCount += 2;
                   }
                   if(mCount > monitoring.length-1){
