@@ -221,9 +221,8 @@ getAllQuestion().then(function(returnVal){
                      //high
                      mCount++;
                }else{
-                      mCount++;
                  if (monitoring[mCount] == monitoring[3]){
-                     mCount +=2;
+                     mCount += 2;
                   }
                   if(mCount > monitoring.length-1){
                     mCount = 0;
