@@ -203,8 +203,7 @@ getAllQuestion().then(function(returnVal){
                 } else if (req.body.result.parameters.yesno.length != 0) {  //if yes/no is valid
                     monitorAnswers.push(req.body.result.parameters.yesno);  //push to answers
                 }
-                 mCount ++; //iterate through each question //0,1,2,3,4
-                  break;
+                 mCount = mCount +1; //iterate through each question //0,1,2,3,4
 
                 if (mCount == 1){ //2nd Question  mCount = 0,1,2,3,4
                 var ate = monitorAnswers[0]; //Store yes and no into ate
