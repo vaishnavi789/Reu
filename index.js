@@ -3,14 +3,16 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const admin = require("firebase-admin");
-const serviceAccount = require("./healthycoping-f6c2f-firebase-adminsdk-2k6pw-29793bc767.json");
+const serviceAccount = require("./surveyquestions-87dbb-firebase-adminsdk-1aetp-f81cc4c3a0.json");
 
 admin.initializeApp({
  credential: admin.credential.cert(serviceAccount),
- databaseURL: "https://healthycoping-f6c2f.firebaseio.com/"
+ databaseURL: "https://surveyquestions-87dbb.firebaseio.com/"
 });
 
 var monitoring = [];
+var high = [];
+var low = [];
 var coping = [];
 var vegetables = [];
 var starches = [];
@@ -26,9 +28,32 @@ function getAllQuestion() {
         }
         return monitoringQuestions;
     })
-    var afterCoping = afterMonitoring.then(function (monitoringQuestions) {
+
+    var high =  admin.database().ref('/').child('monitoring').child('high');
+      var highMonitoring = high.once('value').then(function (snapshot){
+        var highQuestions = []
+        var obj = snapshot.val();
+        for (var i in obj){
+          highQuestions.push(obj[i]);
+        }
+        return highQuestions;
+      })
+
+      var low =  admin.database().ref('/').child('monitoring').child('low');
+        var lowMonitoring = low.once('value').then(function (snapshot){
+          var lowQuestions = []
+          var obj = snapshot.val();
+          for (var i in obj){
+            lowQuestions.push(obj[i]);
+          }
+          return lowQuestions;
+        })
+
+    var afterCoping = afterMonitoring.then(function (monitoringQuestions, highQuestions, lowQuestions) {
         var data = {}
         data['monitoring'] = monitoringQuestions
+        data['high'] = highQuestions
+        data['low'] = lowQuestions
         data['coping'] = []
         var cope = admin.database().ref("/").child('coping');
         var finishedCoping = cope.once('value').then(function (snapshot) {
@@ -45,6 +70,7 @@ function getAllQuestion() {
         })
         return returnedData
     });
+
     var afterVeggies = afterCoping.then(function(returnedData){
         var ref = admin.database().ref("/").child('vegetables').once('value').then(function (snapshot) {
             var veggiesList = []
@@ -133,8 +159,12 @@ function copingResult(answers) {
 }
 
 var mCount = 0;
+var lCount = 0;
+var hCount = 0;
 var copingCount = 0;
 var monitorAnswers = [];
+var highAnswers = [];
+var lowAnswers =  [];
 var copeAnswers = [];
 var date = 0;
 
@@ -151,6 +181,8 @@ var date = 0;
 
 getAllQuestion().then(function(returnVal){
     monitoring = returnVal.monitoring
+    high = returnVal.high
+    low = returnVal.low
     coping = returnVal.coping
     vegetables = returnVal.vegetables
     proteins = returnVal.proteins
@@ -204,30 +236,41 @@ getAllQuestion().then(function(returnVal){
                     monitorAnswers.push(req.body.result.parameters.yesno);  //push to answers
                 }
                  mCount = mCount +1; //iterate through each question //0,1,2,3,4
+                  break;
 
                 if (mCount == 1){ //2nd Question  mCount = 0,1,2,3,4
                 var ate = monitorAnswers[0]; //Store yes and no into ate
                 var sugarLevel = monitorAnswers[1]; //Store numbers into level
                 if (ate == "yes" &&  sugarLevel < 8.5){
                      //normal
-                      mCount++;
+                       mCount++;
                }else if (ate == "no" &&  sugarLevel >= 4 && sugarLevel <= 7){
                      //normal
-                     mCount++;
+                      mCount++;
                }else if (ate == "no" &&  sugarLevel > 7){
-                     //high
-                     mCount++;
+                     //high //add more questions
+                 if (req.body.result.parameters.number.length != 0) { //valid number
+                       highAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
+                }else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
+                       highAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
+                      }
+                     hCount++;
                }else if (ate == "yes" && sugarLevel >= 8.5){
                      //high
-                     mCount++;
+                       if (req.body.result.parameters.number.length != 0) { //valid number
+                          highAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
+                      } else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
+                         highAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
+                         }
+                     hCount++;
                }else{
-                     mCount++;
-                 if (monitoring[mCount] == monitoring[mCount + 2]){
-                     mCount += 2;
-                  }
-                  if(mCount > monitoring.length-1){
-                    mCount = 0;
-                  }
+                      //low
+                       if (req.body.result.parameters.number.length != 0) { //valid number
+                           lowAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
+                        } else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
+                           lowAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
+                          }
+                      lCount++;
                 }
               }break;
 
