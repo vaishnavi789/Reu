@@ -238,7 +238,7 @@ getAllQuestion().then(function(returnVal){
                     monitorAnswers.push(req.body.result.parameters.yesno);  //push to answers
                 }
                  mCount = mCount +1; //iterate through each question //0,1,2,3,4
-                  break;
+
 
                 htext = highQuestions[hCount].title;
 
@@ -247,8 +247,8 @@ getAllQuestion().then(function(returnVal){
                  }else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
                         highAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
                        }
-                hCount = hCount + 1;
-                break;
+                 hCount = hCount + 1;
+
 
                 ltext = lowQuestions[lCount].title;
 
@@ -257,8 +257,7 @@ getAllQuestion().then(function(returnVal){
                   } else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
                      lowAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
                     }
-               lCount = lCount + 1;
-                break;
+                 lCount = lCount + 1;
 
                 if (mCount == 1){ //2nd Question  mCount = 0,1,2,3,4
                 var ate = monitorAnswers[0]; //Store yes and no into ate
