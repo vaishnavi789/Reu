@@ -11,8 +11,8 @@ admin.initializeApp({
 });
 
 var monitoring = [];
-var high = [];
-var low = [];
+// var high = [];
+// var low = [];
 var coping = [];
 var vegetables = [];
 var starches = [];
@@ -29,31 +29,31 @@ function getAllQuestion() {
         return monitoringQuestions;
     })
 
-    var high = admin.database().ref('/').child('monitoring').child('high');
-      var highMonitoring = high.once('value').then(function (snapshot){
-        var highQuestions = []
-        var obj = snapshot.val();
-        for (var i in obj){
-          highQuestions.push(obj[i]);
-        }
-        return highQuestions;
-      })
+//     var high = admin.database().ref('/').child('monitoring').child('high');
+//       var highMonitoring = high.once('value').then(function (snapshot){
+//         var highQuestions = []
+//         var obj = snapshot.val();
+//         for (var i in obj){
+//           highQuestions.push(obj[i]);
+//         }
+//         return highQuestions;
+//       })
 
-      var low = admin.database().ref('/').child('monitoring').child('low');
-        var lowMonitoring = low.once('value').then(function (snapshot){
-          var lowQuestions = []
-          var obj = snapshot.val();
-          for (var i in obj){
-            lowQuestions.push(obj[i]);
-          }
-          return lowQuestions;
-        })
+//       var low = admin.database().ref('/').child('monitoring').child('low');
+//         var lowMonitoring = low.once('value').then(function (snapshot){
+//           var lowQuestions = []
+//           var obj = snapshot.val();
+//           for (var i in obj){
+//             lowQuestions.push(obj[i]);
+//           }
+//           return lowQuestions;
+//         })
 
-    var afterCoping = afterMonitoring.then(function (monitoringQuestions, highQuestions, lowQuestions) {
+    var afterCoping = afterMonitoring.then(function (monitoringQuestions) {
         var data = {}
         data['monitoring'] = monitoringQuestions
-        data['high'] = highQuestions
-        data['low'] = lowQuestions
+//         data['high'] = highQuestions
+//         data['low'] = lowQuestions
         data['coping'] = []
         var cope = admin.database().ref("/").child('coping');
         var finishedCoping = cope.once('value').then(function (snapshot) {
@@ -159,12 +159,12 @@ function copingResult(answers) {
 }
 
 var mCount = 0;
-var lCount = 0;
-var hCount = 0;
+// var lCount = 0;
+// var hCount = 0;
 var copingCount = 0;
 var monitorAnswers = [];
-var highAnswers = [];
-var lowAnswers =  [];
+// var highAnswers = [];
+// var lowAnswers =  [];
 var copeAnswers = [];
 var date = 0;
 
@@ -181,8 +181,8 @@ var date = 0;
 
 getAllQuestion().then(function(returnVal){
     monitoring = returnVal.monitoring
-    high = returnVal.high
-    low = returnVal.low
+//     high = returnVal.high
+//     low = returnVal.low
     coping = returnVal.coping
     vegetables = returnVal.vegetables
     proteins = returnVal.proteins
@@ -199,8 +199,8 @@ getAllQuestion().then(function(returnVal){
     restService.post('/reply', function (req, res) {
         var action = req.body.result.action;
         var text;
-        var htext;
-        var ltext;
+//         var htext;
+//         var ltext;
 
         switch (action) {
             case "monitoring.continue":
@@ -250,35 +250,35 @@ getAllQuestion().then(function(returnVal){
            }
        }
       
-                htext = highQuestions[hCount].title;
+//                 htext = highQuestions[hCount].title;
 
-                  if (req.body.result.parameters.number.length != 0) { //valid number
-                        highAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
-                 }else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
-                        highAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
-                       }
-                 hCount = hCount + 1;
+//                   if (req.body.result.parameters.number.length != 0) { //valid number
+//                         highAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
+//                  }else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
+//                         highAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
+//                        }
+//                  hCount = hCount + 1;
 
-                 if (hCount ==1){
-                 var ate = monitorAnswers[0]; //Store yes and no into ate
-                 var sugarLevel = monitorAnswers[1];
-                 if (ate == "no" &&  sugarLevel > 7){
-                     //high //add more questions
-                       hCount = hCount + 1;
-               }else if (ate == "yes" && sugarLevel >= 8.5){
-                     //high
-                       hCount = hCount + 1;
-               }
-             }
+//                  if (hCount ==1){
+//                  var ate = monitorAnswers[0]; //Store yes and no into ate
+//                  var sugarLevel = monitorAnswers[1];
+//                  if (ate == "no" &&  sugarLevel > 7){
+//                      //high //add more questions
+//                        hCount = hCount + 1;
+//                }else if (ate == "yes" && sugarLevel >= 8.5){
+//                      //high
+//                        hCount = hCount + 1;
+//                }
+//              }
 
-                ltext = lowQuestions[lCount].title;
+//                 ltext = lowQuestions[lCount].title;
 
-                 if (req.body.result.parameters.number.length != 0) { //valid number
-                     lowAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
-                  } else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
-                     lowAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
-                    }
-                 lCount = lCount + 1;
+//                  if (req.body.result.parameters.number.length != 0) { //valid number
+//                      lowAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
+//                   } else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
+//                      lowAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
+//                     }
+//                  lCount = lCount + 1;
 
                break;
 
