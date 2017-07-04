@@ -237,8 +237,9 @@ getAllQuestion().then(function(returnVal){
                 } else if (req.body.result.parameters.yesno.length != 0) {  //if yes/no is valid
                     monitorAnswers.push(req.body.result.parameters.yesno);  //push to answers
                 }
-                    mCount = mCount + 1;
-            
+                    mCount = 0;
+                      
+              mCount ++;
            
            if (mCount == 1){ //2nd Question  mCount = 0,1,2,3,4
            var ate = monitorAnswers[0]; //Store yes and no into ate
@@ -248,7 +249,7 @@ getAllQuestion().then(function(returnVal){
           }else if (ate == "no" &&  sugarLevel >= 4 && sugarLevel <= 7){
             mCount = mCount + 1;
            }
-       }
+       }break;
       
 //                 htext = highQuestions[hCount].title;
 
@@ -280,7 +281,7 @@ getAllQuestion().then(function(returnVal){
 //                     }
 //                  lCount = lCount + 1;
 
-               break;
+               
 
             case "coping.continue":
                 action = "start.coping";
