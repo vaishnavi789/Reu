@@ -237,18 +237,19 @@ getAllQuestion().then(function(returnVal){
                 } else if (req.body.result.parameters.yesno.length != 0) {  //if yes/no is valid
                     monitorAnswers.push(req.body.result.parameters.yesno);  //push to answers
                 }
-                 mCount = mCount +1; //iterate through each question //0,1,2,3,4
-
-                 if (mCount == 1){ //2nd Question  mCount = 0,1,2,3,4
-                 var ate = monitorAnswers[0]; //Store yes and no into ate
-                 var sugarLevel = monitorAnswers[1]; //Store numbers into level
-                 if (ate == "yes" &&  sugarLevel < 8.5){
-                  mCount = mCount +1;
-                }else if (ate == "no" &&  sugarLevel >= 4 && sugarLevel <= 7){
-                  mCount = mCount +1;
-                }
-             }break;
-
+                    mCount = mCount + 1;
+            
+           
+           if (mCount == 1){ //2nd Question  mCount = 0,1,2,3,4
+           var ate = monitorAnswers[0]; //Store yes and no into ate
+           var sugarLevel = monitorAnswers[1]; //Store numbers into level
+           if (ate == "yes" &&  sugarLevel < 8.5){
+            mCount = mCount + 1;
+          }else if (ate == "no" &&  sugarLevel >= 4 && sugarLevel <= 7){
+            mCount = mCount + 1;
+           }
+       }
+      
                 htext = highQuestions[hCount].title;
 
                   if (req.body.result.parameters.number.length != 0) { //valid number
@@ -258,7 +259,7 @@ getAllQuestion().then(function(returnVal){
                        }
                  hCount = hCount + 1;
 
-                 if (mCount ==1){
+                 if (hCount ==1){
                  var ate = monitorAnswers[0]; //Store yes and no into ate
                  var sugarLevel = monitorAnswers[1];
                  if (ate == "no" &&  sugarLevel > 7){
@@ -268,7 +269,7 @@ getAllQuestion().then(function(returnVal){
                      //high
                        hCount = hCount + 1;
                }
-             }break;
+             }
 
                 ltext = lowQuestions[lCount].title;
 
@@ -278,7 +279,8 @@ getAllQuestion().then(function(returnVal){
                      lowAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
                     }
                  lCount = lCount + 1;
-                   break;
+
+               break;
 
             case "coping.continue":
                 action = "start.coping";
