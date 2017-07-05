@@ -239,8 +239,8 @@ getAllQuestion().then(function(returnVal){
                  mCount = 2;
                }else if (ate == "no" &&  sugarLevel >= 4 && sugarLevel <= 7){
                  mCount = 1;
-                }
-            }break;
+               }break;
+            }
 
                 if (req.body.result.parameters.number.length != 0) {  //if param length number is valid
                     monitorAnswers.push(req.body.result.parameters.number); // push to monitor answ
@@ -248,7 +248,7 @@ getAllQuestion().then(function(returnVal){
                     monitorAnswers.push(req.body.result.parameters.yesno);  //push to answers
                 }
             mCount ++;
-
+            break;
 
 
 //                 htext = highQuestions[hCount].title;
