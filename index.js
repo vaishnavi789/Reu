@@ -239,7 +239,7 @@ getAllQuestion().then(function(returnVal){
                  mCount = 2;
                }else if (ate == "no" &&  sugarLevel >= 4 && sugarLevel <= 7){
                  mCount = 1;
-               }break;
+               }
             }
 
                 if (req.body.result.parameters.number.length != 0) {  //if param length number is valid
