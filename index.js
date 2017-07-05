@@ -232,24 +232,25 @@ getAllQuestion().then(function(returnVal){
                 }
                 text = monitoring[mCount].title;
 
+                if (mCount == 3){ //2nd Question  mCount = 0,1,2,3,4
+                var ate = monitorAnswers[0]; //Store yes and no into ate
+                var sugarLevel = monitorAnswers[1]; //Store numbers into level
+                if (ate == "yes" &&  sugarLevel < 8.5){
+                 mCount = 2;
+               }else if (ate == "no" &&  sugarLevel >= 4 && sugarLevel <= 7){
+                 mCount = 1;
+                }
+            }break;
+
                 if (req.body.result.parameters.number.length != 0) {  //if param length number is valid
                     monitorAnswers.push(req.body.result.parameters.number); // push to monitor answ
                 } else if (req.body.result.parameters.yesno.length != 0) {  //if yes/no is valid
                     monitorAnswers.push(req.body.result.parameters.yesno);  //push to answers
                 }
-                                          
-                 mCount ++;
-           
-           if (mCount == 1){ //2nd Question  mCount = 0,1,2,3,4
-           var ate = monitorAnswers[0]; //Store yes and no into ate
-           var sugarLevel = monitorAnswers[1]; //Store numbers into level
-           if (ate == "yes" &&  sugarLevel < 8.5){
-            mCount = 2;
-          }else if (ate == "no" &&  sugarLevel >= 4 && sugarLevel <= 7){
-            mCount = 3;
-           }
-       }break;
-      
+            mCount ++;
+
+
+
 //                 htext = highQuestions[hCount].title;
 
 //                   if (req.body.result.parameters.number.length != 0) { //valid number
@@ -280,7 +281,7 @@ getAllQuestion().then(function(returnVal){
 //                     }
 //                  lCount = lCount + 1;
 
-               
+
 
             case "coping.continue":
                 action = "start.coping";
