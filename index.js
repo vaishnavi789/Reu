@@ -246,17 +246,17 @@ getAllQuestion().then(function(returnVal) {
                 var ate = monitorAnswers[0]; //Store yes and no into ate
                 var sugarLevel = monitorAnswers[1]; //Store numbers into level
                 if (ate == "yes" &&  sugarLevel < 8.5){
-                 monitorCount = 2;
+                 monitorCount = 4;
                }else if (ate == "no" &&  sugarLevel >= 4 && sugarLevel <= 7){
                  monitorCount = 1;
                }
             }
-
-              monitorCount++;
-
+            
                  if(monitorCount > monitoring.length-1){
                   monitorCount = 0;
                 }
+
+                     monitorCount++;
 
                 break;
 
