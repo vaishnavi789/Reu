@@ -242,18 +242,17 @@ getAllQuestion().then(function(returnVal) {
                     monitorAnswers.push(req.body.result.parameters.yesno);
                 }
 
-
-                monitorCount++;
-
-                if (mCount == 3){ //2nd Question  mCount = 0,1,2,3,4
+                if (monitorCount == 3){ //2nd Question  mCount = 0,1,2,3,4
                 var ate = monitorAnswers[0]; //Store yes and no into ate
                 var sugarLevel = monitorAnswers[1]; //Store numbers into level
                 if (ate == "yes" &&  sugarLevel < 8.5){
-                 mCount = 2;
+                 monitorCount = 2;
                }else if (ate == "no" &&  sugarLevel >= 4 && sugarLevel <= 7){
-                 mCount = 1;
+                 monitorCount = 1;
                }
             }
+
+              monitorCount++;
 
                  if(monitorCount > monitoring.length-1){
                   monitorCount = 0;
