@@ -236,6 +236,16 @@ getAllQuestion().then(function(returnVal) {
                 }
                 text = monitoring[monitorCount].title;
 
+                if (mCount == 3){ //2nd Question  mCount = 0,1,2,3,4
+                var ate = monitorAnswers[0]; //Store yes and no into ate
+                var sugarLevel = monitorAnswers[1]; //Store numbers into level
+                if (ate == "yes" &&  sugarLevel < 8.5){
+                 mCount = 2;
+               }else if (ate == "no" &&  sugarLevel >= 4 && sugarLevel <= 7){
+                 mCount = 1;
+               }
+            }
+
                 if (req.body.result.parameters.number.length != 0) {
                     monitorAnswers.push(req.body.result.parameters.number);
                 } else if (req.body.result.parameters.yesno.length != 0) {
@@ -244,10 +254,9 @@ getAllQuestion().then(function(returnVal) {
 
                 monitorCount++;
 
-                monitorCount = 0;
-                // if(monitorCount > monitoring.length-1){
-                //   monitoring = [];
-                // }
+                 if(monitorCount > monitoring.length-1){
+                  monitorCount = 0;
+                }
 
                 break;
 
