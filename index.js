@@ -148,21 +148,21 @@ function copingResult(answers) {
     return result;
 }
 
-function writeMonAnswers(monitorAnswers) {
-    var fb = admin.database().ref('/monitoringAnswers/patient1');
-    fb.push({
-        ate: monitorAnswers[0],
-        glucose: monitorAnswers[1],
-        medication: monitorAnswers[2],
-        exercise: monitorAnswers[3],
-        weight: monitorAnswers[4],
-        timestamp: date
-    }).then(function(ref) {
-        console.log(ref);
-    }, function(error) {
-        console.log("Error:", error);
-    });
-}
+// function writeMonAnswers(monitorAnswers) {
+//     var fb = admin.database().ref('/monitoringAnswers/patient1');
+//     fb.push({
+//         ate: monitorAnswers[0],
+//         glucose: monitorAnswers[1],
+//         medication: monitorAnswers[2],
+//         exercise: monitorAnswers[3],
+//         weight: monitorAnswers[4],
+//         timestamp: date
+//     }).then(function(ref) {
+//         console.log(ref);
+//     }, function(error) {
+//         console.log("Error:", error);
+//     });
+// }
 
 function writeCopeAnswers(copeAnswers) {
     var fb = admin.database().ref('/copingAnswers/patient1');
@@ -227,7 +227,7 @@ getAllQuestion().then(function(returnVal) {
                     date = req.body.timestamp;
                     console.log(date);
 
-                    writeMonAnswers(monitorAnswers);
+                    //writeMonAnswers(monitorAnswers);
 
                     text = "I'll get this logged for you ASAP. " +
                         monitorResult(ate, sugarLevel, exercise, weight);
@@ -243,6 +243,10 @@ getAllQuestion().then(function(returnVal) {
                 }
 
                 monitorCount++;
+
+                if(monitorCount > monitoring.length-1){
+                  monitorCount = 0;
+                }
                 break;
 
             case "coping.continue":
@@ -262,7 +266,7 @@ getAllQuestion().then(function(returnVal) {
 
                     text = "Thank you for answering my questions. " +
                         copingResult(copeAnswers);
-                    writeCopeAnswers(copeAnswers);
+                    //writeCopeAnswers(copeAnswers);
                     score = 0;
 
                     break;
