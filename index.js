@@ -242,6 +242,9 @@ getAllQuestion().then(function(returnVal) {
                     monitorAnswers.push(req.body.result.parameters.yesno);
                 }
 
+
+                monitorCount++;
+
                 if (mCount == 3){ //2nd Question  mCount = 0,1,2,3,4
                 var ate = monitorAnswers[0]; //Store yes and no into ate
                 var sugarLevel = monitorAnswers[1]; //Store numbers into level
@@ -251,8 +254,6 @@ getAllQuestion().then(function(returnVal) {
                  mCount = 1;
                }
             }
-
-                monitorCount++;
 
                  if(monitorCount > monitoring.length-1){
                   monitorCount = 0;
