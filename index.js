@@ -236,6 +236,12 @@ getAllQuestion().then(function(returnVal) {
                 }
                 text = monitoring[monitorCount].title;
 
+                if (req.body.result.parameters.number.length != 0) {
+                    monitorAnswers.push(req.body.result.parameters.number);
+                } else if (req.body.result.parameters.yesno.length != 0) {
+                    monitorAnswers.push(req.body.result.parameters.yesno);
+                }
+
                 if (mCount == 3){ //2nd Question  mCount = 0,1,2,3,4
                 var ate = monitorAnswers[0]; //Store yes and no into ate
                 var sugarLevel = monitorAnswers[1]; //Store numbers into level
@@ -245,12 +251,6 @@ getAllQuestion().then(function(returnVal) {
                  mCount = 1;
                }
             }
-
-                if (req.body.result.parameters.number.length != 0) {
-                    monitorAnswers.push(req.body.result.parameters.number);
-                } else if (req.body.result.parameters.yesno.length != 0) {
-                    monitorAnswers.push(req.body.result.parameters.yesno);
-                }
 
                 monitorCount++;
 
