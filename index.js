@@ -154,7 +154,6 @@ function copingResult(answers) {
     } else {
         result += "You seem to be doing all right! I'm glad.";
     }
-
     return result;
 }
 
