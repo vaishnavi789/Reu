@@ -245,7 +245,7 @@ getAllQuestion().then(function(returnVal) {
                 monitorCount++;
 
                 if(monitorCount > monitoring.length-1){
-                  monitorCount = 0;
+                  monitoring = [];
                 }
                 break;
 
