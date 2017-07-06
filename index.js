@@ -244,9 +244,11 @@ getAllQuestion().then(function(returnVal) {
 
                 monitorCount++;
 
-                if(monitorCount > monitoring.length-1){
-                  monitoring = [];
-                }
+                monitorCount = 0;
+                // if(monitorCount > monitoring.length-1){
+                //   monitoring = [];
+                // }
+
                 break;
 
             case "coping.continue":
