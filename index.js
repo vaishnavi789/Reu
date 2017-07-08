@@ -227,6 +227,7 @@ getAllQuestion().then(function(returnVal){
                     //+ "What else can I do for you?";
                     break;
                 }
+
                 text = monitoring[mCount].title;
 
                 if (req.body.result.parameters.number.length != 0) {  //if param length number is valid
@@ -253,38 +254,60 @@ getAllQuestion().then(function(returnVal){
                  lCount = 1;
                }
             }
-
                 mCount ++;
                 break;
 
-//                  text = highQuestions[hCount].title;
+                    if (hCount >= high.length) { //count is greater than monitoring length
+                    if (req.body.result.parameters.number.length != 0) { //valid number
+                        highAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
+                    } else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
+                        highAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
+                    }
+                    hCount = 0; //Setting mCount back to zero
 
-//                    if (req.body.result.parameters.number.length != 0) { //valid number
-//                          highAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
-//                   }else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
-//                          highAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
-//                         }
+                    console.log(highAnswers);
+                    break;
+                  }
 
-//                  if (mCount == 5){
-//                     hCount ++;
-//                   }
+                 text = high[hCount].title;
+
+                   if (req.body.result.parameters.number.length != 0) { //valid number
+                         highAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
+                  }else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
+                         highAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
+                        }
+
+                 if (mCount == 5){
+                    hCount ++;
+                    break;
+                  }
 
 
-//                  text = lowQuestions[lCount].title;
+                   if (lCount >= low.length) { //count is greater than monitoring length
+                       if (req.body.result.parameters.number.length != 0) { //valid number
+                           lowAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
+                       } else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
+                           lowAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
+                       }
+                       lCount = 0; //Setting mCount back to zero
 
-//                   if (req.body.result.parameters.number.length != 0) { //valid number
-//                       lowAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
-//                   } else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
-//                      lowAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
-//                      }
+                       console.log(lowAnswers);
+                       break;
+                     }
 
-//                      if (mCount == 5){
-//                         lCount ++;
-//                       }
+                   text = low[lCount].title;
+
+                  if (req.body.result.parameters.number.length != 0) { //valid number
+                      lowAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
+                  } else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
+                     lowAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
+                     }
+
+                     if (mCount == 5){
+                        lCount ++;
+                        break;
+                      }
                       
-//                         break;
-
-
             case "coping.continue":
                 action = "start.coping";
 
