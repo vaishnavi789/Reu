@@ -255,7 +255,6 @@ getAllQuestion().then(function(returnVal){
                }
             }
                  mCount ++;
-                break;
 
                    if(mCount == 5){
                    if(hCount == 1){
@@ -267,10 +266,8 @@ getAllQuestion().then(function(returnVal){
                         }
                      hCount ++;
                        }
-                    console.log(highAnswers);
-                    break;
+                    console.log(highAnswers);                    
                 }
-                
 
                    if(mCount == 5){
                    if(lCount == 1){
@@ -283,9 +280,9 @@ getAllQuestion().then(function(returnVal){
                     lCount ++;
                      }
                  console.log(lowAnswers);
-                 break;
                }
 
+        break;
 
             case "coping.continue":
                 action = "start.coping";
