@@ -254,53 +254,37 @@ getAllQuestion().then(function(returnVal){
                  lCount = 1;
                }
             }
-                mCount ++;
+                 mCount ++;
+                break;
 
-                    if (hCount >= high.length) { //count is greater than monitoring length
-                    if (req.body.result.parameters.number.length != 0) { //valid number
-                        highAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
-                    } else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
-                        highAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
-                    }
-                    hCount = 0; //Setting mCount back to zero
-
-                    console.log(highAnswers);
-                    break;
-                  }
-
-                   while(mCount ==5){
+                   if(mCount == 5){
+                   if(hCount == 1){
                    text = high[hCount].title;
                    if (req.body.result.parameters.number.length != 0) { //valid number
                          highAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
                   }else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
                          highAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
                         }
-                    hCount ++;
-                    break;
-                  }
-
-                   if (lCount >= low.length) { //count is greater than monitoring length
-                       if (req.body.result.parameters.number.length != 0) { //valid number
-                           lowAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
-                       } else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
-                           lowAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
+                     hCount ++;
                        }
-                       lCount = 0; //Setting mCount back to zero
-                       console.log(lowAnswers);
-                       break;
-                     }
+                    console.log(highAnswers);
+                    break;
+                }
+                
 
-
-                  while (mCount == 5){
+                   if(mCount == 5){
+                   if(lCount == 1){
                    text = low[lCount].title;
                   if (req.body.result.parameters.number.length != 0) { //valid number
                       lowAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
-                  } else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
+                  }else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
                      lowAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
                      }
                     lCount ++;
-                    break;
-                 }
+                     }
+                 console.log(lowAnswers);
+                 break;
+               }
 
 
             case "coping.continue":
