@@ -29,7 +29,7 @@ function getAllQuestion() {
         return monitoringQuestions;
     })
 
-      var high = admin.database().ref('/').child('monitoring').child('high');
+      var high = admin.database().ref('/').child('high');
        var highMonitoring = high.once('value').then(function (snapshot){
          var highQuestions = []
         var obj = snapshot.val();
@@ -39,7 +39,7 @@ function getAllQuestion() {
         return highQuestions;
       })
 
-      var low = admin.database().ref('/').child('monitoring').child('low');
+      var low = admin.database().ref('/').child('low');
          var lowMonitoring = low.once('value').then(function (snapshot){
            var lowQuestions = []
            var obj = snapshot.val();
@@ -49,7 +49,7 @@ function getAllQuestion() {
            return lowQuestions;
          })
 
-    var afterCoping = afterMonitoring.then(function (monitoringQuestions) {
+    var afterCoping = afterMonitoring.then(function (monitoringQuestions, highQuestions, lowQuestions) {
         var data = {}
         data['monitoring'] = monitoringQuestions
          data['high'] = highQuestions
@@ -256,6 +256,7 @@ getAllQuestion().then(function(returnVal){
 
                 mCount ++;
 
+
                  text = highQuestions[hCount].title;
 
                    if (req.body.result.parameters.number.length != 0) { //valid number
@@ -280,7 +281,7 @@ getAllQuestion().then(function(returnVal){
                      if (mCount == 5){
                         lCount ++;
                       }
-
+                      
                         break;
 
 
