@@ -256,7 +256,7 @@ getAllQuestion().then(function(returnVal){
             }
                  mCount ++;
 
-                   if(mCount > 5){
+
                    if(hCount == 1){
                    text = high[hCount].title;
                    if (req.body.result.parameters.number.length != 0) { //valid number
@@ -266,10 +266,10 @@ getAllQuestion().then(function(returnVal){
                         }
                      hCount ++;
                        }
-                    console.log(highAnswers);                    
-                }
+                    console.log(highAnswers);
 
-                   if(mCount > 5){
+
+
                    if(lCount == 1){
                    text = low[lCount].title;
                   if (req.body.result.parameters.number.length != 0) { //valid number
@@ -280,7 +280,7 @@ getAllQuestion().then(function(returnVal){
                     lCount ++;
                      }
                  console.log(lowAnswers);
-               }
+
            break;
 
             case "coping.continue":
