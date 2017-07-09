@@ -210,36 +210,19 @@ getAllQuestion().then(function(returnVal){
                         monitorAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
                     } else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
                         monitorAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
-                    }
+                    }  else if (req.body.result.parameters.number.length != 0) { //valid number
+                       highAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
+                    } else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
+                       highAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
+                    }  else if (req.body.result.parameters.number.length != 0) { //valid number
+                      lowAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
+                    } else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
+                       lowAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
+                   }
 
-                                      if (mCount >= monitoring.length){
-                                       if(hCount == 1){
-                                       text = high[hCount].title;
-                                       if (req.body.result.parameters.number.length != 0) { //valid number
-                                             highAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
-                                      }else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
-                                             highAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
-                                            }
-                                           hCount ++;
-                                           }
-                                           console.log(highAnswers);
-                                       }
-
-                                       if (mCount >= monitoring.length){
-                                        if(lCount == 1){
-                                        text = low[lCount].title;
-                                      if (req.body.result.parameters.number.length != 0) { //valid number
-                                          lowAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
-                                      }else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
-                                         lowAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
-                                         }
-                                        lCount ++;
-                                         }
-                                         console.log(lowAnswers);
-                                       }
-
-                                      mCount = 0;
-
+                        mCount = 0;
+                        hCount = 0;
+                        lCount = 0;
 
                     var ate = monitorAnswers[0];     //Storing answers at the end
                     var sugarLevel = monitorAnswers[1];
@@ -247,6 +230,8 @@ getAllQuestion().then(function(returnVal){
                     var exercise = monitorAnswers[3];
                     var weight = monitorAnswers[4];
                     console.log(monitorAnswers);
+                    console.log(highAnswers);
+                    console.log(lowAnswers)
                     date = req.body.timestamp;
                     console.log(date);
 
@@ -282,8 +267,25 @@ getAllQuestion().then(function(returnVal){
                  lCount = 1;
                }
             }
-                 mCount ++;
+               mCount ++;
 
+             if(hCount == 1){
+             text = high[hCount].title;
+             if (req.body.result.parameters.number.length != 0) { //valid number
+                   highAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
+            }else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
+                  highAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
+           }
+             }hCount ++;
+
+           if (lCount == 1){
+           text = low[lCount].title;
+          if (req.body.result.parameters.number.length != 0) { //valid number
+            lowAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
+         }else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
+            lowAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
+          }
+          }lCount ++;
 
            break;
 
