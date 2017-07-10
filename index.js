@@ -205,6 +205,8 @@ getAllQuestion().then(function(returnVal){
 
             case "start.monitor":
             if (mCount >= monitoring.length){
+
+              monitoring = monitoring.concat(high);
             if (req.body.result.parameters.number.length != 0) { //valid number
                monitorAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
            } else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
@@ -239,7 +241,7 @@ getAllQuestion().then(function(returnVal){
            //+ "What else can I do for you?";
            break;
         }
-               monitoring = monitoring.concat(high);
+
                 text = monitoring[mCount].title;
 
                 if (req.body.result.parameters.number.length != 0) {  //if param length number is valid
