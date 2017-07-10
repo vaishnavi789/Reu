@@ -241,6 +241,27 @@ getAllQuestion().then(function(returnVal){
                     break;
                 }
 
+                if(mCount == monitoring.length){
+                  if(hCount == 1){
+                   text = high[hCount].title;
+
+                if (req.body.result.parameters.number.length != 0) { //valid number
+                      highAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
+               } else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
+                     highAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
+              }
+                 }
+                 else if(lCount == 1){
+                   text = low[lCount].title;
+
+                if (req.body.result.parameters.number.length != 0) { //valid number
+                  lowAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
+               }else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
+                  lowAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
+                }
+              }
+            }
+
                 text = monitoring[mCount].title;
 
                 if (req.body.result.parameters.number.length != 0) {  //if param length number is valid
@@ -248,6 +269,7 @@ getAllQuestion().then(function(returnVal){
                 } else if (req.body.result.parameters.yesno.length != 0) {  //if yes/no is valid
                     monitorAnswers.push(req.body.result.parameters.yesno);  //push to answers
                 }
+                  //mCount ++;
 
                 if (mCount == 2){ //2nd Question  mCount = 0,1,2,3,4
                 var ate = monitorAnswers[0]; //Store yes and no into ate
@@ -268,26 +290,10 @@ getAllQuestion().then(function(returnVal){
                }
             }
                mCount ++;
+               hCount ++;
+               lCount ++;
 
-             if(hCount == 1){
-             text = high[hCount].title;
-             if (req.body.result.parameters.number.length != 0) { //valid number
-                   highAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
-            }else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
-                  highAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
-           }
-             }hCount ++;
-
-           if (lCount == 1){
-           text = low[lCount].title;
-          if (req.body.result.parameters.number.length != 0) { //valid number
-            lowAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
-         }else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
-            lowAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
-          }
-          }lCount ++;
-
-           break;
+              break;
 
             case "coping.continue":
                 action = "start.coping";
