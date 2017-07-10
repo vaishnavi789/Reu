@@ -212,28 +212,28 @@ getAllQuestion().then(function(returnVal){
                         monitorAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
                     }
 
-                    if (hCount == 1){
-                    text = high[hCount].title;
-                   if (req.body.result.parameters.number.length != 0) { //valid number
-                         highAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
-                  } else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
-                        highAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
-                 } hCount ++;
-               }
+//                     if (hCount == 1){
+//                     text = high[hCount].title;
+//                    if (req.body.result.parameters.number.length != 0) { //valid number
+//                          highAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
+//                   } else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
+//                         highAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
+//                  } hCount ++;
+//                }
 
-                    if (lCount == 1){
-                      text = low[lCount].title;
-                   if (req.body.result.parameters.number.length != 0) { //valid number
-                     lowAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
-                  }else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
-                     lowAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
-                   }
-                  }lCount ++;
-                }
+//                     if (lCount == 1){
+//                       text = low[lCount].title;
+//                    if (req.body.result.parameters.number.length != 0) { //valid number
+//                      lowAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
+//                   }else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
+//                      lowAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
+//                    }
+//                   }lCount ++;
+//                 }
 
                         mCount = 0;
-                        hCount = 0;
-                        lCount = 0;
+//                         hCount = 0;
+//                         lCount = 0;
 
                     var ate = monitorAnswers[0];     //Storing answers at the end
                     var sugarLevel = monitorAnswers[1];
