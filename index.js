@@ -204,7 +204,41 @@ getAllQuestion().then(function(returnVal){
                 action = "start.monitor";
 
             case "start.monitor":
+            if (mCount >= monitoring.length){
+            if (req.body.result.parameters.number.length != 0) { //valid number
+               monitorAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
+           } else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
+               monitorAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
+        //    } else if (req.body.result.parameters.number.length != 0) { //valid number
+        //         highAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
+        //   }else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
+        //         highAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
+        //  }else if (req.body.result.parameters.number.length != 0) { //valid number
+        //       lowAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
+        //  }else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
+        //       lowAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
+        //   }
+               mCount = 0;
+              //  hCount = 0;
+              //  lCount = 0;
 
+           var ate = monitorAnswers[0];     //Storing answers at the end
+           var sugarLevel = monitorAnswers[1];
+           var medication = monitorAnswers[2];
+           var exercise = monitorAnswers[3];
+           var weight = monitorAnswers[4];
+           console.log(monitorAnswers);
+          //  console.log(highAnswers);
+          //  console.log(lowAnswers)
+           date = req.body.timestamp;
+           console.log(date);
+
+           text = "I'll get this logged for you ASAP. "
+               + monitorResult(ate, sugarLevel, exercise, weight);
+           //+ "What else can I do for you?";
+           break;
+        }
+                monitoring = monitoring.concat(high)
                 text = monitoring[mCount].title;
 
                 if (req.body.result.parameters.number.length != 0) {  //if param length number is valid
@@ -233,66 +267,8 @@ getAllQuestion().then(function(returnVal){
                }
             }
                 mCount ++;
+                break;
 
-                if (mCount >= monitoring.length){
-
-                if(hCount == 1){
-
-                text = high[hCount].title;
-
-               if (req.body.result.parameters.number.length != 0) { //valid number
-                     highAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
-              } else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
-                    highAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
-              }
-                hCount ++;
-            }
-
-               if (lCount == 1){
-
-                text = low[lCount].title;
-
-           if (req.body.result.parameters.number.length != 0) { //valid number
-             lowAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
-          }else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
-             lowAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
-             }
-              lCount ++;
-           }
-
-             if (req.body.result.parameters.number.length != 0) { //valid number
-                   monitorAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
-               } else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
-                   monitorAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
-               } else if (req.body.result.parameters.number.length != 0) { //valid number
-                    highAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
-             } else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
-                    highAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
-            } else if (req.body.result.parameters.number.length != 0) { //valid number
-                  lowAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
-             }else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
-                  lowAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
-              }
-                   mCount = 0;
-                   hCount = 0;
-                   lCount = 0;
-
-               var ate = monitorAnswers[0];     //Storing answers at the end
-               var sugarLevel = monitorAnswers[1];
-               var medication = monitorAnswers[2];
-               var exercise = monitorAnswers[3];
-               var weight = monitorAnswers[4];
-               console.log(monitorAnswers);
-               console.log(highAnswers);
-               console.log(lowAnswers)
-               date = req.body.timestamp;
-               console.log(date);
-
-               text = "I'll get this logged for you ASAP. "
-                   + monitorResult(ate, sugarLevel, exercise, weight);
-               //+ "What else can I do for you?";
-               break;
-           }
 
             case "coping.continue":
                 action = "start.coping";
