@@ -209,7 +209,7 @@ getAllQuestion().then(function(returnVal){
                monitorAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
            } else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
                monitorAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
-        //    } else if (req.body.result.parameters.number.length != 0) { //valid number
+        //   } } else if (req.body.result.parameters.number.length != 0) { //valid number
         //         highAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
         //   }else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
         //         highAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
@@ -218,6 +218,7 @@ getAllQuestion().then(function(returnVal){
         //  }else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
         //       lowAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
         //   }
+      }
                mCount = 0;
               //  hCount = 0;
               //  lCount = 0;
@@ -238,7 +239,7 @@ getAllQuestion().then(function(returnVal){
            //+ "What else can I do for you?";
            break;
         }
-                monitoring = monitoring.concat(high)
+                // monitoring = monitoring.concat(high)
                 text = monitoring[mCount].title;
 
                 if (req.body.result.parameters.number.length != 0) {  //if param length number is valid
