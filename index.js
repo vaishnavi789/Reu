@@ -211,6 +211,7 @@ getAllQuestion().then(function(returnVal){
                     } else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
                         monitorAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
                     }
+                          mCount = 0;
 
                       text = high[hCount].title;
 
@@ -219,7 +220,8 @@ getAllQuestion().then(function(returnVal){
                   } else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
                         highAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
                  } hCount ++;
-
+                 
+                        hCount = 0;
 
                       text = low[lCount].title;
 
@@ -227,11 +229,8 @@ getAllQuestion().then(function(returnVal){
                      lowAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
                   }else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
                      lowAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
-                   }
-                  lCount ++;
-
-                        mCount = 0;
-                        hCount = 0;
+                   } lCount ++;
+                      
                         lCount = 0;
 
                     var ate = monitorAnswers[0];     //Storing answers at the end
