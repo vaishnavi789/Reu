@@ -204,7 +204,7 @@ getAllQuestion().then(function(returnVal){
                 action = "start.monitor";
 
             case "start.monitor":
-            if (mCount >= monitor.length){
+            if (mCount >= monitoring.length){
 
             if (req.body.result.parameters.number.length != 0) { //valid number
                monitorAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
@@ -242,8 +242,8 @@ getAllQuestion().then(function(returnVal){
            break;
         }
 
-                monitor = monitoring.concat(high);
-                text = monitor[mCount].title;
+                monitoring = monitoring.concat(high);
+                text = monitoring[mCount].title;
 
                 if (req.body.result.parameters.number.length != 0) {  //if param length number is valid
                     monitorAnswers.push(req.body.result.parameters.number); // push to monitor answ
@@ -261,17 +261,17 @@ getAllQuestion().then(function(returnVal){
                 var sugarLevel = monitorAnswers[1]; //Store numbers into level
                 if (ate == "yes" &&  sugarLevel >= 8.5){
                  mCount = 3;
-                 hCount = 1;
+                // hCount = 1;
                 }else if(ate = "no" && sugarLevel > 7){
                  mCount = 3;
-                 hCount = 1;
+              //   hCount = 1;
                 }else if (ate == "no" &&  sugarLevel >= 4 && sugarLevel <= 7){
                  mCount = 2;
                }else if (ate == "yes" && sugarLevel < 8.5){
                  mCount = 2;
               }else{
                  mCount = 2;
-                 lCount = 1;
+              //   lCount = 1;
                }
             }
                 mCount ++;
