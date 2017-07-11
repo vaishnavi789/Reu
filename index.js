@@ -207,7 +207,6 @@ getAllQuestion().then(function(returnVal){
             case "start.monitor":
             if (mCount >= monitoring.length){
 
-
                 text = monitor[hCount].title;
 
             if (req.body.result.parameters.number.length != 0) {
@@ -216,21 +215,13 @@ getAllQuestion().then(function(returnVal){
              highAnswers.push(req.body.result.parameters.yesno);
            }
                   hCount ++;
-
+                  break;
 
             if (req.body.result.parameters.number.length != 0) {
                monitorAnswers.push(req.body.result.parameters.number);
            } else if (req.body.result.parameters.yesno.length != 0) {
                monitorAnswers.push(req.body.result.parameters.yesno);
              }
-
-
-           //pushing into monitor answers
-        //  }else if (req.body.result.parameters.number.length != 0) { //valid number
-        //       lowAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
-        //  }else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
-        //       lowAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
-        //   }
 
                mCount = 0;
                hCount = 0;
@@ -249,8 +240,7 @@ getAllQuestion().then(function(returnVal){
 
            text = "I'll get this logged for you ASAP. "
                + monitorResult(ate, sugarLevel, exercise, weight);
-           //+ "What else can I do for you?";
-           break;
+           //+ "What else can I do for you?";        
         }
 
                 text = monitoring[mCount].title;
