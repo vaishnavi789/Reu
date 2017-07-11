@@ -198,6 +198,7 @@ getAllQuestion().then(function(returnVal){
     restService.post('/reply', function (req, res) {
         var action = req.body.result.action;
         var text;
+        var monitor = monitoring.concat(high);
 
         switch (action) {
             case "monitoring.continue":
@@ -206,15 +207,25 @@ getAllQuestion().then(function(returnVal){
             case "start.monitor":
             if (mCount >= monitoring.length){
 
-            if (req.body.result.parameters.number.length != 0) { //valid number
-               monitorAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
-           } else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
-               monitorAnswers.push(req.body.result.parameters.yesno);  //pushing into monitor answers
-          } else if (req.body.result.parameters.number.length != 0) { //valid number
-             highAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
-         } else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
+
+                text = monitor[hCount].title;
+
+            if (req.body.result.parameters.number.length != 0) {
+              highAnswers.push(req.body.result.parameters.number);
+           } else if (req.body.result.parameters.yesno.length != 0) {
              highAnswers.push(req.body.result.parameters.yesno);
-           } //pushing into monitor answers
+           }
+                  hCount ++;
+
+
+            if (req.body.result.parameters.number.length != 0) {
+               monitorAnswers.push(req.body.result.parameters.number);
+           } else if (req.body.result.parameters.yesno.length != 0) {
+               monitorAnswers.push(req.body.result.parameters.yesno);
+             }
+
+
+           //pushing into monitor answers
         //  }else if (req.body.result.parameters.number.length != 0) { //valid number
         //       lowAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
         //  }else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
@@ -222,7 +233,7 @@ getAllQuestion().then(function(returnVal){
         //   }
 
                mCount = 0;
-              //  hCount = 0;
+               hCount = 0;
               //  lCount = 0;
 
            var ate = monitorAnswers[0];     //Storing answers at the end
@@ -231,7 +242,7 @@ getAllQuestion().then(function(returnVal){
            var exercise = monitorAnswers[3];
            var weight = monitorAnswers[4];
            console.log(monitorAnswers);
-           console.log(highAnswers);
+          // console.log(highAnswers);
           //  console.log(lowAnswers)
            date = req.body.timestamp;
            console.log(date);
@@ -242,18 +253,14 @@ getAllQuestion().then(function(returnVal){
            break;
         }
 
-                monitoring = monitoring.concat(high);
                 text = monitoring[mCount].title;
 
                 if (req.body.result.parameters.number.length != 0) {  //if param length number is valid
                     monitorAnswers.push(req.body.result.parameters.number); // push to monitor answ
                 } else if (req.body.result.parameters.yesno.length != 0) {  //if yes/no is valid
                     monitorAnswers.push(req.body.result.parameters.yesno);  //push to answers
-                } else if (req.body.result.parameters.number.length != 0) { //valid number
-                   highAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
-               } else if (req.body.result.parameters.yesno.length != 0) { //if param value is ues or no
-                   highAnswers.push(req.body.result.parameters.yesno);
-                 }
+                }
+
                   //mCount ++;
 
                 if (mCount == 2){ //2nd Question  mCount = 0,1,2,3,4
