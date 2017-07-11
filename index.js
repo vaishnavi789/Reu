@@ -242,7 +242,7 @@ getAllQuestion().then(function(returnVal){
            break;
         }
 
-                monitoring = monitoring.concat(high);
+                monitoring = monitoring.push(high);
                 text = monitoring[mCount].title;
 
                 if (req.body.result.parameters.number.length != 0) {  //if param length number is valid
