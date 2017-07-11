@@ -52,8 +52,8 @@ function getAllQuestion() {
     var afterCoping = afterMonitoring.then(function (monitoringQuestions, highQuestions, lowQuestions) {
         var data = {}
         data['monitoring'] = monitoringQuestions
-         data['high'] = highQuestions
-         data['low'] = lowQuestions
+        data['high'] = highQuestions
+        data['low'] = lowQuestions
         data['coping'] = []
         var cope = admin.database().ref("/").child('coping');
         var finishedCoping = cope.once('value').then(function (snapshot) {
@@ -198,7 +198,7 @@ getAllQuestion().then(function(returnVal){
     restService.post('/reply', function (req, res) {
         var action = req.body.result.action;
         var text;
-        var monitor = monitoring.concat(high);
+      //  var monitor = monitoring.concat(high);
 
         switch (action) {
             case "monitoring.continue":
@@ -207,7 +207,7 @@ getAllQuestion().then(function(returnVal){
             case "start.monitor":
             if (mCount >= monitoring.length){
 
-                text = monitor[hCount].title;
+              text = high[hCount].title;
 
             if (req.body.result.parameters.number.length != 0) {
               highAnswers.push(req.body.result.parameters.number);
@@ -240,7 +240,7 @@ getAllQuestion().then(function(returnVal){
 
            text = "I'll get this logged for you ASAP. "
                + monitorResult(ate, sugarLevel, exercise, weight);
-           //+ "What else can I do for you?";        
+           //+ "What else can I do for you?";
         }
 
                 text = monitoring[mCount].title;
