@@ -29,31 +29,21 @@ function getAllQuestion() {
         return monitoringQuestions;
     })
 
-      var high = admin.database().ref('/').child('high');
-       var highMonitoring = high.once('value').then(function (snapshot){
-         var highQuestions = []
-        var obj = snapshot.val();
-         for (var i in obj){
-           highQuestions.push(obj[i]);
-        }
-        return highQuestions;
-      })
+      // var high = admin.database().ref('/').child('high');
+      //  var highMonitoring = high.once('value').then(function (snapshot){
+      //    var highQuestions = []
+      //   var obj = snapshot.val();
+      //    for (var i in obj){
+      //      highQuestions.push(obj[i]);
+      //   }
+      //   return highQuestions;
+      // })
 
-      var low = admin.database().ref('/').child('low');
-         var lowMonitoring = low.once('value').then(function (snapshot){
-           var lowQuestions = []
-           var obj = snapshot.val();
-           for (var i in obj){
-            lowQuestions.push(obj[i]);
-           }
-           return lowQuestions;
-         })
 
-    var afterCoping = afterMonitoring.then(function (monitoringQuestions, highQuestions, lowQuestions) {
+
+    var afterCoping = afterMonitoring.then(function (monitoringQuestions) {
         var data = {}
         data['monitoring'] = monitoringQuestions
-        data['high'] = highQuestions
-        data['low'] = lowQuestions
         data['coping'] = []
         var cope = admin.database().ref("/").child('coping');
         var finishedCoping = cope.once('value').then(function (snapshot) {
@@ -114,7 +104,35 @@ function getAllQuestion() {
         });
         return ref;
     });
-    return afterStarches;
+    var afterLow = afterStarches.then(function (returnedData) {
+        var ref = admin.database().ref("/").child('low').once('value').then(function (snapshot) {
+            var lowQuestions = []
+            var obj = snapshot.val();
+            for (var i in obj){
+             lowQuestions.push(obj[i]);
+            }
+            return lowQuestions;
+        }).then(function (returnedLowQuestionsList) {
+            returnedData.low = returnedLowQuestionsList;
+            return returnedData
+        });
+        return ref;
+    });
+    var afterHigh = afterVeggies.then(function (returnedData) {
+        var ref = admin.database().ref("/").child('high').once('value').then(function (snapshot) {
+            var highQuestions = []
+            var obj = snapshot.val();
+            for (var i in obj){
+             highQuestions.push(obj[i]);
+            }
+            return highQuestions;
+        }).then(function (returnedHighQuestionsList) {
+            returnedData.high = returnedHighQuestionsList;
+            return returnedData
+        });
+        return ref;
+    });
+    return afterHigh;
 }
 
  function monitorResult(ate, sugar, exercise, weight) {
