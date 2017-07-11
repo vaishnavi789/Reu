@@ -204,7 +204,7 @@ getAllQuestion().then(function(returnVal){
                 action = "start.monitor";
 
             case "start.monitor":
-            if (mCount >= monitoring.length){
+            if (mCount >= monitor.length){
 
             if (req.body.result.parameters.number.length != 0) { //valid number
                monitorAnswers.push(req.body.result.parameters.number); //storing number parameter value into monitor answers
@@ -242,8 +242,8 @@ getAllQuestion().then(function(returnVal){
            break;
         }
 
-                monitoring = monitoring.concat(high);
-                text = monitoring[mCount].title;
+                monitor = monitoring.concat(high);
+                text = monitor[mCount].title;
 
                 if (req.body.result.parameters.number.length != 0) {  //if param length number is valid
                     monitorAnswers.push(req.body.result.parameters.number); // push to monitor answ
