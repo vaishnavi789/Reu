@@ -226,7 +226,7 @@ getAllQuestion().then(function(returnVal){
 
             case "start.monitor":
             if (mCount >= monitoring.length){
-
+                 
                text = high[hCount].title;
 
             if (req.body.result.parameters.number.length != 0) {
@@ -234,27 +234,26 @@ getAllQuestion().then(function(returnVal){
            } else if (req.body.result.parameters.yesno.length != 0) {
              highAnswers.push(req.body.result.parameters.yesno);
            }
-                   hCount ++;
-
-                   if (req.body.result.parameters.number.length != 0) {
-                      monitorAnswers.push(req.body.result.parameters.number);
-                  } else if (req.body.result.parameters.yesno.length != 0) {
-                      monitorAnswers.push(req.body.result.parameters.yesno);
-                  }
-                     mCount = 0;
-                        
+                   hCount ++;                        
                     break;
           }
 
-          if  (hCount >= high.length){                  
-                    hCount = 0;
+          if  (hCount >= high.length){      
 
-              var ate = monitorAnswers[0];     //Storing answers at the end
-              var sugarLevel = monitorAnswers[1];
-              var medication = monitorAnswers[2];
-              var exercise = monitorAnswers[3];
-              var weight = monitorAnswers[4];
+            if (req.body.result.parameters.number.length != 0) {
+               monitorAnswers.push(req.body.result.parameters.number);
+           } else if (req.body.result.parameters.yesno.length != 0) {
+               monitorAnswers.push(req.body.result.parameters.yesno);
+           }
 
+           mCount = 0;
+
+           var ate = monitorAnswers[0];     //Storing answers at the end
+           var sugarLevel = monitorAnswers[1];
+           var medication = monitorAnswers[2];
+           var exercise = monitorAnswers[3];
+           var weight = monitorAnswers[4];
+                      
            console.log(monitorAnswers);
            console.log(highAnswers);
           //  console.log(lowAnswers)
