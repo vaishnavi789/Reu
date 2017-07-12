@@ -104,6 +104,7 @@ function getAllQuestion() {
         });
         return ref;
     });
+
     var afterLow = afterStarches.then(function (returnedData) {
         var ref = admin.database().ref("/").child('low').once('value').then(function (snapshot) {
             var lowQuestions = []
@@ -118,6 +119,7 @@ function getAllQuestion() {
         });
         return ref;
     });
+
     var afterHigh = afterVeggies.then(function (returnedData) {
         var ref = admin.database().ref("/").child('high').once('value').then(function (snapshot) {
             var highQuestions = []
@@ -233,7 +235,6 @@ getAllQuestion().then(function(returnVal){
              highAnswers.push(req.body.result.parameters.yesno);
            }
                   hCount ++;
-                  break;
 
             if (req.body.result.parameters.number.length != 0) {
                monitorAnswers.push(req.body.result.parameters.number);
@@ -251,7 +252,7 @@ getAllQuestion().then(function(returnVal){
            var exercise = monitorAnswers[3];
            var weight = monitorAnswers[4];
            console.log(monitorAnswers);
-          // console.log(highAnswers);
+           console.log(highAnswers);
           //  console.log(lowAnswers)
            date = req.body.timestamp;
            console.log(date);
@@ -259,6 +260,7 @@ getAllQuestion().then(function(returnVal){
            text = "I'll get this logged for you ASAP. "
                + monitorResult(ate, sugarLevel, exercise, weight);
            //+ "What else can I do for you?";
+           break;
         }
 
                 text = monitoring[mCount].title;
