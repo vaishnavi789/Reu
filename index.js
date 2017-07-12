@@ -227,6 +227,13 @@ getAllQuestion().then(function(returnVal){
             case "start.monitor":
             if (mCount >= monitoring.length){
 
+              if (req.body.result.parameters.number.length != 0) {
+                 monitorAnswers.push(req.body.result.parameters.number);
+             } else if (req.body.result.parameters.yesno.length != 0) {
+                 monitorAnswers.push(req.body.result.parameters.yesno);
+             }
+
+                      mCount = 0;
 
                text = high[hCount].title;
 
@@ -238,14 +245,16 @@ getAllQuestion().then(function(returnVal){
                    hCount ++;
 
                     break;
+          }
 
-                    if (req.body.result.parameters.number.length != 0) {
-                       monitorAnswers.push(req.body.result.parameters.number);
-                   } else if (req.body.result.parameters.yesno.length != 0) {
-                       monitorAnswers.push(req.body.result.parameters.yesno);
-                   }
+          if  (hCount >= high.length){
 
-                  mCount = 0;
+        if (req.body.result.parameters.number.length != 0) {
+          highAnswers.push(req.body.result.parameters.number);
+       } else if (req.body.result.parameters.yesno.length != 0) {
+         highAnswers.push(req.body.result.parameters.yesno);
+       }
+
                   hCount = 0;
 
                   var ate = monitorAnswers[0];     //Storing answers at the end
@@ -264,7 +273,7 @@ getAllQuestion().then(function(returnVal){
                + monitorResult(ate, sugarLevel, exercise, weight);
            //+ "What else can I do for you?";
            break;
-        }
+      }
 
                 text = monitoring[mCount].title;
 
