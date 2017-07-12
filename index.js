@@ -227,6 +227,19 @@ getAllQuestion().then(function(returnVal){
             case "start.monitor":
             if (mCount >= monitoring.length){
 
+              if (req.body.result.parameters.number.length != 0) {
+                 monitorAnswers.push(req.body.result.parameters.number);
+             } else if (req.body.result.parameters.yesno.length != 0) {
+                 monitorAnswers.push(req.body.result.parameters.yesno);
+             }
+                    mCount = 0;
+
+              var ate = monitorAnswers[0];     //Storing answers at the end
+              var sugarLevel = monitorAnswers[1];
+              var medication = monitorAnswers[2];
+              var exercise = monitorAnswers[3];
+              var weight = monitorAnswers[4];
+
                text = high[hCount].title;
 
             if (req.body.result.parameters.number.length != 0) {
@@ -236,21 +249,14 @@ getAllQuestion().then(function(returnVal){
            }
                    hCount ++;
 
-           if (req.body.result.parameters.number.length != 0) {
-              monitorAnswers.push(req.body.result.parameters.number);
-          } else if (req.body.result.parameters.yesno.length != 0) {
-              monitorAnswers.push(req.body.result.parameters.yesno);
-          }
-                  //mCount = 0;
+                   if (req.body.result.parameters.number.length != 0) {
+                     highAnswers.push(req.body.result.parameters.number);
+                  } else if (req.body.result.parameters.yesno.length != 0) {
+                    highAnswers.push(req.body.result.parameters.yesno);
+                  }
 
-              // hCount = 0;
-              //  lCount = 0;
+                  hCount = 0;
 
-           var ate = monitorAnswers[0];     //Storing answers at the end
-           var sugarLevel = monitorAnswers[1];
-           var medication = monitorAnswers[2];
-           var exercise = monitorAnswers[3];
-           var weight = monitorAnswers[4];
            console.log(monitorAnswers);
            console.log(highAnswers);
           //  console.log(lowAnswers)
