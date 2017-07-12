@@ -235,6 +235,13 @@ getAllQuestion().then(function(returnVal){
 
                       mCount = 0;
 
+                var ate = monitorAnswers[0];     //Storing answers at the end
+                var sugarLevel = monitorAnswers[1];
+                var medication = monitorAnswers[2];
+                var exercise = monitorAnswers[3];
+                var weight = monitorAnswers[4];
+
+
                text = high[hCount].title;
 
             if (req.body.result.parameters.number.length != 0) {
@@ -249,19 +256,8 @@ getAllQuestion().then(function(returnVal){
 
           if  (hCount >= high.length){
 
-        if (req.body.result.parameters.number.length != 0) {
-          highAnswers.push(req.body.result.parameters.number);
-       } else if (req.body.result.parameters.yesno.length != 0) {
-         highAnswers.push(req.body.result.parameters.yesno);
-       }
-
                   hCount = 0;
 
-                  var ate = monitorAnswers[0];     //Storing answers at the end
-                  var sugarLevel = monitorAnswers[1];
-                  var medication = monitorAnswers[2];
-                  var exercise = monitorAnswers[3];
-                  var weight = monitorAnswers[4];
 
            console.log(monitorAnswers);
            console.log(highAnswers);
