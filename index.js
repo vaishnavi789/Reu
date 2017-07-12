@@ -246,12 +246,13 @@ getAllQuestion().then(function(returnVal){
           }
 
           if  (hCount >= high.length){
-
+            
             if (req.body.result.parameters.number.length != 0) {
               highAnswers.push(req.body.result.parameters.number);
            } else if (req.body.result.parameters.yesno.length != 0) {
-             hig
-
+             highAnswers.push(req.body.result.parameters.yesno);
+           }
+          
            hCount = 0;
 
            var ate = monitorAnswers[0];     //Storing answers at the end
