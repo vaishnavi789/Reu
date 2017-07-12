@@ -243,7 +243,7 @@ getAllQuestion().then(function(returnVal){
              }
 
                mCount = 0;
-               hCount = 0;
+               // hCount = 0;
               //  lCount = 0;
 
            var ate = monitorAnswers[0];     //Storing answers at the end
