@@ -227,13 +227,6 @@ getAllQuestion().then(function(returnVal){
             case "start.monitor":
             if (mCount >= monitoring.length){
 
-              if (req.body.result.parameters.number.length != 0) {
-                 monitorAnswers.push(req.body.result.parameters.number);
-             } else if (req.body.result.parameters.yesno.length != 0) {
-                 monitorAnswers.push(req.body.result.parameters.yesno);
-               }
-                   mCount = 0;
-
                text = high[hCount].title;
 
             if (req.body.result.parameters.number.length != 0) {
@@ -242,6 +235,13 @@ getAllQuestion().then(function(returnVal){
              highAnswers.push(req.body.result.parameters.yesno);
            }
                    hCount ++;
+
+           if (req.body.result.parameters.number.length != 0) {
+              monitorAnswers.push(req.body.result.parameters.number);
+          } else if (req.body.result.parameters.yesno.length != 0) {
+              monitorAnswers.push(req.body.result.parameters.yesno);
+          }
+                  //mCount = 0;
 
               // hCount = 0;
               //  lCount = 0;
