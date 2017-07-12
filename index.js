@@ -227,23 +227,23 @@ getAllQuestion().then(function(returnVal){
             case "start.monitor":
             if (mCount >= monitoring.length){
 
-              text = high[hCount].title;
+              if (req.body.result.parameters.number.length != 0) {
+                 monitorAnswers.push(req.body.result.parameters.number);
+             } else if (req.body.result.parameters.yesno.length != 0) {
+                 monitorAnswers.push(req.body.result.parameters.yesno);
+               }
+                   mCount = 0;
+
+               text = high[hCount].title;
 
             if (req.body.result.parameters.number.length != 0) {
               highAnswers.push(req.body.result.parameters.number);
            } else if (req.body.result.parameters.yesno.length != 0) {
              highAnswers.push(req.body.result.parameters.yesno);
            }
-                  hCount ++;
+                   hCount ++;
 
-            if (req.body.result.parameters.number.length != 0) {
-               monitorAnswers.push(req.body.result.parameters.number);
-           } else if (req.body.result.parameters.yesno.length != 0) {
-               monitorAnswers.push(req.body.result.parameters.yesno);
-             }
-
-               mCount = 0;
-               // hCount = 0;
+              // hCount = 0;
               //  lCount = 0;
 
            var ate = monitorAnswers[0];     //Storing answers at the end
