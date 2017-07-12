@@ -235,18 +235,18 @@ getAllQuestion().then(function(returnVal){
              highAnswers.push(req.body.result.parameters.yesno);
            }
                    hCount ++;
+
+                   if (req.body.result.parameters.number.length != 0) {
+                      monitorAnswers.push(req.body.result.parameters.number);
+                  } else if (req.body.result.parameters.yesno.length != 0) {
+                      monitorAnswers.push(req.body.result.parameters.yesno);
+                  }
+                     mCount = 0;
+                        
                     break;
           }
 
-          if  (hCount >= high.length){
-
-            if (req.body.result.parameters.number.length != 0) {
-               monitorAnswers.push(req.body.result.parameters.number);
-           } else if (req.body.result.parameters.yesno.length != 0) {
-               monitorAnswers.push(req.body.result.parameters.yesno);
-           }
-
-                    mCount = 0;
+          if  (hCount >= high.length){                  
                     hCount = 0;
 
               var ate = monitorAnswers[0];     //Storing answers at the end
