@@ -226,24 +226,24 @@ getAllQuestion().then(function(returnVal){
 
             case "start.monitor":
           if (mCount >= monitoring.length){
-                          
+
            text = high[hCount].title;
-           
+
         if (req.body.result.parameters.number.length != 0) {
           highAnswers.push(req.body.result.parameters.number);
        } else if (req.body.result.parameters.yesno.length != 0) {
          highAnswers.push(req.body.result.parameters.yesno);
        }
-      
-              var ate = monitorAnswers[0]; 
+
+              var ate = monitorAnswers[0];
               var sugarLevel = monitorAnswers[1];
               if (ate == "yes" &&  sugarLevel >= 8.5){
                hCount = 1;
               }else if(ate = "no" && sugarLevel > 7){
                hCount = 1;
                }
-               
-              hCount ++;            
+
+              hCount ++;
               break;
           }
 
@@ -256,6 +256,7 @@ getAllQuestion().then(function(returnVal){
            }
 
                  mCount = 0;
+                 hCount = 0;
 
            var ate = monitorAnswers[0];     //Storing answers at the end
            var sugarLevel = monitorAnswers[1];
@@ -275,15 +276,15 @@ getAllQuestion().then(function(returnVal){
 
                 text = monitoring[mCount].title;
 
-                if (req.body.result.parameters.number.length != 0) {  
-                    monitorAnswers.push(req.body.result.parameters.number); 
-                } else if (req.body.result.parameters.yesno.length != 0) {  
-                    monitorAnswers.push(req.body.result.parameters.yesno);  
+                if (req.body.result.parameters.number.length != 0) {
+                    monitorAnswers.push(req.body.result.parameters.number);
+                } else if (req.body.result.parameters.yesno.length != 0) {
+                    monitorAnswers.push(req.body.result.parameters.yesno);
                 }
 
-                if (mCount == 2){ 
-                var ate = monitorAnswers[0]; 
-                var sugarLevel = monitorAnswers[1]; 
+                if (mCount == 2){
+                var ate = monitorAnswers[0];
+                var sugarLevel = monitorAnswers[1];
                 if (ate == "yes" &&  sugarLevel >= 8.5){
                  mCount = 3;
                 }else if(ate = "no" && sugarLevel > 7){
