@@ -227,15 +227,26 @@ getAllQuestion().then(function(returnVal){
             case "start.monitor":
             if (mCount >= monitoring.length){
 
+                  if (hCount == 1){
                text = high[hCount].title;
-
             if (req.body.result.parameters.number.length != 0) {
               highAnswers.push(req.body.result.parameters.number);
            } else if (req.body.result.parameters.yesno.length != 0) {
              highAnswers.push(req.body.result.parameters.yesno);
            }
                    hCount ++;
-                    break;
+          }
+
+                    if (lCount == 1){
+                   text = low[lCount].title;
+                if (req.body.result.parameters.number.length != 0) {
+                  lowAnswers.push(req.body.result.parameters.number);
+               } else if (req.body.result.parameters.yesno.length != 0) {
+                 lowAnswers.push(req.body.result.parameters.yesno);
+               }
+                   lCount ++;
+               }
+                     break;
           }
 
             if  (hCount >= high.length){
@@ -248,13 +259,13 @@ getAllQuestion().then(function(returnVal){
 
                  mCount = 0;
 
-            if (req.body.result.parameters.number.length != 0) {
-              highAnswers.push(req.body.result.parameters.number);
-           } else if (req.body.result.parameters.yesno.length != 0) {
-             highAnswers.push(req.body.result.parameters.yesno);
-           }
-
-                 hCount = 0;
+          //   if (req.body.result.parameters.number.length != 0) {
+          //     highAnswers.push(req.body.result.parameters.number);
+          //  } else if (req.body.result.parameters.yesno.length != 0) {
+          //    highAnswers.push(req.body.result.parameters.yesno);
+          //  }
+           // 
+          //        hCount = 0;
 
            var ate = monitorAnswers[0];     //Storing answers at the end
            var sugarLevel = monitorAnswers[1];
@@ -263,7 +274,7 @@ getAllQuestion().then(function(returnVal){
            var weight = monitorAnswers[4];
 
            console.log(monitorAnswers);
-           console.log(highAnswers);
+          // console.log(highAnswers);
           //  console.log(lowAnswers)
            date = req.body.timestamp;
            console.log(date);
@@ -273,6 +284,42 @@ getAllQuestion().then(function(returnVal){
            //+ "What else can I do for you?";
            break;
       }
+
+       else if (lCount >= low.length){
+
+      if (req.body.result.parameters.number.length != 0) {
+         monitorAnswers.push(req.body.result.parameters.number);
+     } else if (req.body.result.parameters.yesno.length != 0) {
+         monitorAnswers.push(req.body.result.parameters.yesno);
+     }
+
+           mCount = 0;
+
+    //   if (req.body.result.parameters.number.length != 0) {
+    //     lowAnswers.push(req.body.result.parameters.number);
+    //  } else if (req.body.result.parameters.yesno.length != 0) {
+    //    lowAnswers.push(req.body.result.parameters.yesno);
+    //  }
+     // 
+    //        lCount = 0;
+
+     var ate = monitorAnswers[0];     //Storing answers at the end
+     var sugarLevel = monitorAnswers[1];
+     var medication = monitorAnswers[2];
+     var exercise = monitorAnswers[3];
+     var weight = monitorAnswers[4];
+
+     console.log(monitorAnswers);
+  //   console.log(highAnswers);
+    //  console.log(lowAnswers)
+     date = req.body.timestamp;
+     console.log(date);
+
+     text = "I'll get this logged for you ASAP. "
+         + monitorResult(ate, sugarLevel, exercise, weight);
+     //+ "What else can I do for you?";
+     break;
+}
 
                 text = monitoring[mCount].title;
 
@@ -289,17 +336,17 @@ getAllQuestion().then(function(returnVal){
                 var sugarLevel = monitorAnswers[1]; //Store numbers into level
                 if (ate == "yes" &&  sugarLevel >= 8.5){
                  mCount = 3;
-                // hCount = 1;
+                 hCount = 1;
                 }else if(ate = "no" && sugarLevel > 7){
                  mCount = 3;
-              //   hCount = 1;
+                 hCount = 1;
                 }else if (ate == "no" &&  sugarLevel >= 4 && sugarLevel <= 7){
                  mCount = 2;
                }else if (ate == "yes" && sugarLevel < 8.5){
                  mCount = 2;
               }else{
                  mCount = 2;
-              //   lCount = 1;
+                lCount = 1;
                }
             }
                 mCount ++;
