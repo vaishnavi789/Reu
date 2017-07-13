@@ -236,16 +236,15 @@ getAllQuestion().then(function(returnVal){
            }
                    hCount ++;
           }
-
-                    if (lCount == 1){
-                   text = low[lCount].title;
-                if (req.body.result.parameters.number.length != 0) {
-                  lowAnswers.push(req.body.result.parameters.number);
-               } else if (req.body.result.parameters.yesno.length != 0) {
-                 lowAnswers.push(req.body.result.parameters.yesno);
-               }
-                   lCount ++;
-               }
+//                     if (lCount == 1){
+//                    text = low[lCount].title;
+//                 if (req.body.result.parameters.number.length != 0) {
+//                   lowAnswers.push(req.body.result.parameters.number);
+//                } else if (req.body.result.parameters.yesno.length != 0) {
+//                  lowAnswers.push(req.body.result.parameters.yesno);
+//                }
+//                    lCount ++;
+//                }
                      break;
           }
 
@@ -285,15 +284,15 @@ getAllQuestion().then(function(returnVal){
            break;
       }
 
-       else if (lCount >= low.length){
+//        else if (lCount >= low.length){
 
-      if (req.body.result.parameters.number.length != 0) {
-         monitorAnswers.push(req.body.result.parameters.number);
-     } else if (req.body.result.parameters.yesno.length != 0) {
-         monitorAnswers.push(req.body.result.parameters.yesno);
-     }
+//       if (req.body.result.parameters.number.length != 0) {
+//          monitorAnswers.push(req.body.result.parameters.number);
+//      } else if (req.body.result.parameters.yesno.length != 0) {
+//          monitorAnswers.push(req.body.result.parameters.yesno);
+//      }
 
-           mCount = 0;
+//            mCount = 0;
 
     //   if (req.body.result.parameters.number.length != 0) {
     //     lowAnswers.push(req.body.result.parameters.number);
@@ -303,23 +302,23 @@ getAllQuestion().then(function(returnVal){
      // 
     //        lCount = 0;
 
-     var ate = monitorAnswers[0];     //Storing answers at the end
-     var sugarLevel = monitorAnswers[1];
-     var medication = monitorAnswers[2];
-     var exercise = monitorAnswers[3];
-     var weight = monitorAnswers[4];
+//      var ate = monitorAnswers[0];     //Storing answers at the end
+//      var sugarLevel = monitorAnswers[1];
+//      var medication = monitorAnswers[2];
+//      var exercise = monitorAnswers[3];
+//      var weight = monitorAnswers[4];
 
-     console.log(monitorAnswers);
-  //   console.log(highAnswers);
-    //  console.log(lowAnswers)
-     date = req.body.timestamp;
-     console.log(date);
+//      console.log(monitorAnswers);
+//   //   console.log(highAnswers);
+//     //  console.log(lowAnswers)
+//      date = req.body.timestamp;
+//      console.log(date);
 
-     text = "I'll get this logged for you ASAP. "
-         + monitorResult(ate, sugarLevel, exercise, weight);
-     //+ "What else can I do for you?";
-     break;
-}
+//      text = "I'll get this logged for you ASAP. "
+//          + monitorResult(ate, sugarLevel, exercise, weight);
+//      //+ "What else can I do for you?";
+//      break;
+// }
 
                 text = monitoring[mCount].title;
 
