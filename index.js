@@ -232,41 +232,39 @@ getAllQuestion().then(function(returnVal){
            } else if (req.body.result.parameters.yesno.length != 0) {
                monitorAnswers.push(req.body.result.parameters.yesno);
            }
-            
+
+               mCount = 0;
+
+              var ate = monitorAnswers[0];     //Storing answers at the end
+              var sugarLevel = monitorAnswers[1];
+              var medication = monitorAnswers[2];
+              var exercise = monitorAnswers[3];
+              var weight = monitorAnswers[4];
+
+
              if (ate == "yes" &&  sugarLevel >= 8.5){
              hCount = 1;
              }else if(ate = "no" && sugarLevel > 7){
              hCount = 1;
-            }else if (ate == "no" &&  sugarLevel >= 4 && sugarLevel <= 7){
-             mCount = 0;
-            }else if (ate == "yes" && sugarLevel < 8.5){
-             mCount = 0;
-           }else{
-             mCount = 0;
-           }
+            }
 
-           var ate = monitorAnswers[0];     //Storing answers at the end
-           var sugarLevel = monitorAnswers[1];
-           var medication = monitorAnswers[2];
-           var exercise = monitorAnswers[3];
-           var weight = monitorAnswers[4];
-  
          if (hCount == 1){
          text = high[hCount].title;
         if (req.body.result.parameters.number.length != 0) {
           highAnswers.push(req.body.result.parameters.number);
        } else if (req.body.result.parameters.yesno.length != 0) {
          highAnswers.push(req.body.result.parameters.yesno);
-       }             
-           hCount ++;    
-        }                                              
+       }
+           hCount ++;
+      }
+
               break;
       }
 
             if  (hCount >= high.length){
-                                             
+
                  hCount = 0;
-                
+
            console.log(monitorAnswers);
            date = req.body.timestamp;
            console.log(date);
