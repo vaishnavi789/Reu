@@ -235,20 +235,26 @@ getAllQuestion().then(function(returnVal){
          highAnswers.push(req.body.result.parameters.yesno);
        }
 
-              var ate = monitorAnswers[0];
-              var sugarLevel = monitorAnswers[1];
               if (ate == "yes" &&  sugarLevel >= 8.5){
                hCount = 1;
               }else if(ate = "no" && sugarLevel > 7){
                hCount = 1;
                }
-
-              hCount ++;
+               
+              hCount ++;              
               break;
           }
 
             if  (hCount >= high.length){
+              
+              if (req.body.result.parameters.number.length != 0) {
+                 highAnswers.push(req.body.result.parameters.number);
+             } else if (req.body.result.parameters.yesno.length != 0) {
+                 highAnswers.push(req.body.result.parameters.yesno);
+             }
 
+                  hCount = 0;
+                 
             if (req.body.result.parameters.number.length != 0) {
                monitorAnswers.push(req.body.result.parameters.number);
            } else if (req.body.result.parameters.yesno.length != 0) {
@@ -256,8 +262,7 @@ getAllQuestion().then(function(returnVal){
            }
 
                  mCount = 0;
-                 hCount = 0;
-
+                
            var ate = monitorAnswers[0];     //Storing answers at the end
            var sugarLevel = monitorAnswers[1];
            var medication = monitorAnswers[2];
