@@ -262,7 +262,7 @@ getAllQuestion().then(function(returnVal){
             break;
       }
 
-            if  (hCount >= high.length){
+            if  (hCount > high.length){
 
                  mCount = 0;
                  hCount = 0;
