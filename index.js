@@ -249,15 +249,7 @@ getAllQuestion().then(function(returnVal){
 
             if  (hCount >= high.length){
 
-              if (req.body.result.parameters.number.length != 0) {
-                highAnswers.push(req.body.result.parameters.number);
-             } else if (req.body.result.parameters.yesno.length != 0) {
-               highAnswers.push(req.body.result.parameters.yesno);
-             }
                    hCount = 0;
-
-                 console.log(highAnswers);
-
 
               if (req.body.result.parameters.number.length != 0) {
                  monitorAnswers.push(req.body.result.parameters.number);
@@ -274,7 +266,7 @@ getAllQuestion().then(function(returnVal){
 
                           console.log(monitorAnswers);
 
-\           date = req.body.timestamp;
+           date = req.body.timestamp;
            console.log(date);
 
            text = "I'll get this logged for you ASAP. "
