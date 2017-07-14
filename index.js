@@ -243,8 +243,7 @@ getAllQuestion().then(function(returnVal){
             hCount = 1;
            }
              hCount ++;
-             break;
-
+             
             //  if (req.body.result.parameters.number.length != 0) {
             //     monitorAnswers.push(req.body.result.parameters.number);
             // } else if (req.body.result.parameters.yesno.length != 0) {
@@ -260,7 +259,7 @@ getAllQuestion().then(function(returnVal){
             //
             //           console.log(monitorAnswers);
 
-
+            break;
       }
 
             if  (hCount >= high.length){
