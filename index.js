@@ -249,7 +249,7 @@ getAllQuestion().then(function(returnVal){
             // } else if (req.body.result.parameters.yesno.length != 0) {
             //     monitorAnswers.push(req.body.result.parameters.yesno);
             // }
-                   mCount = 0;
+                   
             //
             //           var ate = monitorAnswers[0];     //Storing answers at the end
             //           var sugarLevel = monitorAnswers[1];
@@ -264,6 +264,7 @@ getAllQuestion().then(function(returnVal){
 
             if  (hCount >= high.length){
 
+                 mCount = 0;
                  hCount = 0;
 
            date = req.body.timestamp;
