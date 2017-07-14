@@ -243,7 +243,7 @@ getAllQuestion().then(function(returnVal){
             hCount = 1;
            }
              hCount ++;
-             break;
+
 
              if (req.body.result.parameters.number.length != 0) {
                 monitorAnswers.push(req.body.result.parameters.number);
