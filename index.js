@@ -264,8 +264,8 @@ getAllQuestion().then(function(returnVal){
 
             if  (hCount >= high.length){
 
-                 mCount = 0;
-              //   hCount = 0;
+                // mCount = 0;
+                 hCount = 0;
 
            date = req.body.timestamp;
            console.log(date);
