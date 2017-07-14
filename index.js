@@ -227,40 +227,24 @@ getAllQuestion().then(function(returnVal){
             case "start.monitor":
           if (mCount >= monitoring.length){
 
+           text = high[hCount].title;
+
+           if (req.body.result.parameters.number.length != 0) {
+             highAnswers.push(req.body.result.parameters.number);
+          } else if (req.body.result.parameters.yesno.length != 0) {
+            highAnswers.push(req.body.result.parameters.yesno);
+          }
+
+           var ate = monitorAnswers[0];     //Storing answers at the end
+           var sugarLevel = monitorAnswers[1];
             if (ate == "yes" &&  sugarLevel >= 8.5){
             hCount = 1;
             }else if(ate = "no" && sugarLevel > 7){
             hCount = 1;
            }
 
-        if (hCount == 1){
-        text = high[hCount].title;
-       if (req.body.result.parameters.number.length != 0) {
-         highAnswers.push(req.body.result.parameters.number);
-      } else if (req.body.result.parameters.yesno.length != 0) {
-        highAnswers.push(req.body.result.parameters.yesno);
-      }
-          hCount ++;
-          break;
-     }
-
-            if (req.body.result.parameters.number.length != 0) {
-               monitorAnswers.push(req.body.result.parameters.number);
-           } else if (req.body.result.parameters.yesno.length != 0) {
-               monitorAnswers.push(req.body.result.parameters.yesno);
-           }
-
-               mCount = 0;
-
-               var ate = monitorAnswers[0];     //Storing answers at the end
-               var sugarLevel = monitorAnswers[1];
-               var medication = monitorAnswers[2];
-               var exercise = monitorAnswers[3];
-               var weight = monitorAnswers[4];
-
-                  console.log(monitorAnswers);
-
-              break;
+             hCount ++;
+             break;
       }
 
             if  (hCount >= high.length){
@@ -270,12 +254,27 @@ getAllQuestion().then(function(returnVal){
              } else if (req.body.result.parameters.yesno.length != 0) {
                highAnswers.push(req.body.result.parameters.yesno);
              }
+                   hCount = 0;
 
-             hCount = 0;
+                 console.log(highAnswers);
 
-          // console.log(monitorAnswers);
-           console.log(highAnswers);
-           date = req.body.timestamp;
+
+              if (req.body.result.parameters.number.length != 0) {
+                 monitorAnswers.push(req.body.result.parameters.number);
+             } else if (req.body.result.parameters.yesno.length != 0) {
+                 monitorAnswers.push(req.body.result.parameters.yesno);
+             }
+                       mCount = 0;
+
+                       var ate = monitorAnswers[0];     //Storing answers at the end
+                       var sugarLevel = monitorAnswers[1];
+                       var medication = monitorAnswers[2];
+                       var exercise = monitorAnswers[3];
+                       var weight = monitorAnswers[4];
+
+                          console.log(monitorAnswers);
+
+\           date = req.body.timestamp;
            console.log(date);
 
            text = "I'll get this logged for you ASAP. "
