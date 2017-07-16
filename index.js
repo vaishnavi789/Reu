@@ -178,6 +178,8 @@ function copingResult(answers) {
 }
 
 var mCount = 0;
+var hCount = 0;
+var lCount = 0;
 var copingCount = 0;
 var monitorAnswers = [];
  var highAnswers = [];
@@ -241,19 +243,19 @@ getAllQuestion().then(function(returnVal){
            var weight = monitorAnswers[4];
 
             if (ate == "yes" &&  sugarLevel >= 8.5){
-            mCount = 1;
+            hCount = 1;
             } else if(ate = "no" && sugarLevel > 7){
-            mCount = 1;
+            hCount = 1;
             }
 
             text = "I'll get this logged for you ASAP. "
                  + monitorResult(ate, sugarLevel, exercise, weight);
                  + "What else can I do for you?";
             break;
-  }
+       }
   
-           if  (mCount == 1){
-           text = monitor[mCount].title;
+           if  (hCount == 1){
+           text = monitor[hCount].title;
 
            if (req.body.result.parameters.number.length != 0) {
              highAnswers.push(req.body.result.parameters.number);
@@ -261,12 +263,12 @@ getAllQuestion().then(function(returnVal){
             highAnswers.push(req.body.result.parameters.yesno);
           }
           
-            mCount ++;
+            hCount ++;
             break;
       }
 
-          if (mCount >= high.length){
-              mCount = 0;
+          if (hCount >= high.length){
+              hCount = 0;
 
             var ate = monitorAnswers[0];     //Storing answers at the end
             var sugarLevel = monitorAnswers[1];
