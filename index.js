@@ -241,19 +241,14 @@ getAllQuestion().then(function(returnVal){
            var exercise = monitorAnswers[3];
            var weight = monitorAnswers[4];
            
-           if (ate == "yes" &&  sugarLevel >= 8.5){ //high
-            hCount = 1;
-          } else if(ate = "no" && sugarLevel > 7){  //high
-            hCount = 1;
-          } break;
-
-          //  text = "I'll get this logged for you ASAP. "
-          //       + monitorResult(ate, sugarLevel, exercise, weight);
-          //       + "What else can I do for you?";
-                                                               
+            text = "I'll get this logged for you ASAP. "
+                + monitorResult(ate, sugarLevel, exercise, weight);
+                 + "What else can I do for you?";
+                 
+         break;                                                       
        }
 
-           if  (hCount == 1){
+           if  (mCount == 0){
            text = high[hCount].title;
 
            if (req.body.result.parameters.number.length != 0) {
@@ -261,6 +256,11 @@ getAllQuestion().then(function(returnVal){
           } else if (req.body.result.parameters.yesno.length != 0) {
             highAnswers.push(req.body.result.parameters.yesno);
           }
+
+          if (ate == "yes" &&  sugarLevel >= 8.5){ //high
+           hCount = 1;
+         } else if(ate = "no" && sugarLevel > 7){  //high
+           hCount = 1;
 
             hCount ++;
             break;
