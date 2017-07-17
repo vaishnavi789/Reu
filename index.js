@@ -241,21 +241,20 @@ getAllQuestion().then(function(returnVal){
            var exercise = monitorAnswers[3];
            var weight = monitorAnswers[4];
 
+           if (ate == "yes" &&  sugarLevel >= 8.5){ //high
+            hCount = 1;
+            break;
+          }else if(ate = "no" && sugarLevel > 7){  //high
+            hCount = 1;
+           break;
+         }
 
             text = "I'll get this logged for you ASAP. "
                  + monitorResult(ate, sugarLevel, exercise, weight);
                  + "What else can I do for you?";
+
             break;
        }
-
-       var ate = monitorAnswers[0];     //Storing answers at the end
-       var sugarLevel = monitorAnswers[1];
-
-        if (ate == "yes" &&  sugarLevel >= 8.5){
-        hCount = 1;
-        } else if(ate = "no" && sugarLevel > 7){
-        hCount = 1;
-        }
 
            if  (hCount == 1){
            text = high[hCount].title;
@@ -301,9 +300,9 @@ getAllQuestion().then(function(returnVal){
                 if (mCount == 2){
                 var ate = monitorAnswers[0];
                 var sugarLevel = monitorAnswers[1];
-                if (ate == "yes" &&  sugarLevel >= 8.5){
+                if (ate == "yes" &&  sugarLevel >= 8.5){ //high
                  mCount = 3;
-                }else if(ate = "no" && sugarLevel > 7){
+               }else if(ate = "no" && sugarLevel > 7){  //high
                  mCount = 3;
                 }else if (ate == "no" &&  sugarLevel >= 4 && sugarLevel <= 7){
                  mCount = 2;
