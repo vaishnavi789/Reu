@@ -251,7 +251,7 @@ getAllQuestion().then(function(returnVal){
                 + monitorResult(ate, sugarLevel, exercise, weight);
                 + "What else can I do for you?";
                                                                
-            break;
+            //break;
        }
 
            if  (hCount == 1){
