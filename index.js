@@ -241,18 +241,22 @@ getAllQuestion().then(function(returnVal){
            var medication = monitorAnswers[2];
            var exercise = monitorAnswers[3];
            var weight = monitorAnswers[4];
-           
-            text = "I'll get this logged for you ASAP. "
-                + monitorResult(ate, sugarLevel, exercise, weight);
-                 + "What else can I do for you?";   
+
 
                  if (ate == "yes" &&  sugarLevel >= 8.5){ //high
                   tCount = 1;
                 } else if(ate = "no" && sugarLevel > 7){  //high
                   tCount = 1;
                 }
-                               
-         break;                                                       
+
+                if (tCount ==1){
+                 break;
+                }
+
+                text = "I'll get this logged for you ASAP. "
+                    + monitorResult(ate, sugarLevel, exercise, weight);
+                     + "What else can I do for you?";
+         break;
        }
 
            if  (tCount == 1){
@@ -269,7 +273,7 @@ getAllQuestion().then(function(returnVal){
          } else if(ate = "no" && sugarLevel > 7){  //high
            hCount = 1;
          }
-         
+
             hCount ++;
             break;
       }
