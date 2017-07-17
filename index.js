@@ -247,11 +247,10 @@ getAllQuestion().then(function(returnVal){
             hCount = 1;
           } break;
 
-           text = "I'll get this logged for you ASAP. "
-                + monitorResult(ate, sugarLevel, exercise, weight);
-                + "What else can I do for you?";
+          //  text = "I'll get this logged for you ASAP. "
+          //       + monitorResult(ate, sugarLevel, exercise, weight);
+          //       + "What else can I do for you?";
                                                                
-            //break;
        }
 
            if  (hCount == 1){
