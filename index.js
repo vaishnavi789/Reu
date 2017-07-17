@@ -235,25 +235,22 @@ getAllQuestion().then(function(returnVal){
 
            mCount = 0;
 
-           if (mCount == 0){
-
            var ate = monitorAnswers[0];     //Storing answers at the end
            var sugarLevel = monitorAnswers[1];
            var medication = monitorAnswers[2];
            var exercise = monitorAnswers[3];
            var weight = monitorAnswers[4];
+           
+           if (ate == "yes" &&  sugarLevel >= 8.5){ //high
+            hCount = 1;
+          } else if(ate = "no" && sugarLevel > 7){  //high
+            hCount = 1;
+          } break;
 
            text = "I'll get this logged for you ASAP. "
                 + monitorResult(ate, sugarLevel, exercise, weight);
                 + "What else can I do for you?";
-              }
-
-           if (ate == "yes" &&  sugarLevel >= 8.5){ //high
-            hCount = 1;
-          }else if(ate = "no" && sugarLevel > 7){  //high
-            hCount = 1;
-          }
-
+                                                               
             break;
        }
 
