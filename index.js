@@ -218,7 +218,7 @@ getAllQuestion().then(function(returnVal){
     restService.post('/reply', function (req, res) {
         var action = req.body.result.action;
         var text;
-        var monitor = monitoring.concat(high);
+       // var monitor = monitoring.concat(high);
 
         switch (action) {
             case "monitoring.continue":
@@ -287,7 +287,7 @@ getAllQuestion().then(function(returnVal){
 //            break;
 //         }
  
-                text = monitor[mCount].title; //first part of question
+                text = monitoring[mCount].title; //first part of question
 
                 if (req.body.result.parameters.number.length != 0) {
                     monitorAnswers.push(req.body.result.parameters.number);   //monitioring answ
