@@ -259,28 +259,28 @@ getAllQuestion().then(function(returnVal){
                      break;
              }
 
-             if  (cool == 1){
-             text = high[hCount].title;
-
-             if (req.body.result.parameters.number.length != 0) {
-               highAnswers.push(req.body.result.parameters.number);
-            } else if (req.body.result.parameters.yesno.length != 0) {
-              highAnswers.push(req.body.result.parameters.yesno);
-            }
-
-            var ate = monitorAnswers[0];     //Storing answers at the end
-            var sugarLevel = monitorAnswers[1];
-            if (ate == "yes" &&  sugarLevel >= 8.5){ //high
-             hCount = 1;
-           } else if(ate = "no" && sugarLevel > 7){  //high
-             hCount = 1;
-           }
-
-              hCount ++;
-              break;
-        }
        break;
     }
+
+    if  (cool == 1){
+    text = high[hCount].title;
+
+    if (req.body.result.parameters.number.length != 0) {
+      highAnswers.push(req.body.result.parameters.number);
+   } else if (req.body.result.parameters.yesno.length != 0) {
+     highAnswers.push(req.body.result.parameters.yesno);
+   }
+
+   var ate = monitorAnswers[0];     //Storing answers at the end
+   var sugarLevel = monitorAnswers[1];
+   if (ate == "yes" &&  sugarLevel >= 8.5){ //high
+    hCount = 1;
+  } else if(ate = "no" && sugarLevel > 7){  //high
+    hCount = 1;
+  }
+     hCount ++;
+     break;
+}
 
           if (hCount >= high.length){
               hCount = 0;
