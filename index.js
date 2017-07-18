@@ -268,8 +268,6 @@ getAllQuestion().then(function(returnVal){
               highAnswers.push(req.body.result.parameters.yesno);
             }
 
-            var ate = monitorAnswers[0];     //Storing answers at the end
-            var sugarLevel = monitorAnswers[1];
             if (ate == "yes" &&  sugarLevel >= 8.5){ //high
              hCount = 1;
            } else if(ate = "no" && sugarLevel > 7){  //high
@@ -278,6 +276,7 @@ getAllQuestion().then(function(returnVal){
               hCount ++;
               break;
          }
+         
        break;
     }
 
