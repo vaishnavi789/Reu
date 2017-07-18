@@ -180,7 +180,7 @@ function copingResult(answers) {
 var mCount = 0;
 var hCount = 0;
 var lCount = 0;
-var cool = 0;
+var hot = 0;
 var copingCount = 0;
 var monitorAnswers = [];
  var highAnswers = [];
@@ -234,7 +234,7 @@ getAllQuestion().then(function(returnVal){
               monitorAnswers.push(req.body.result.parameters.yesno);
            }
 
-           mCount = 0;
+        //   mCount = 0;
 
            var ate = monitorAnswers[0];     //Storing answers at the end
            var sugarLevel = monitorAnswers[1];
@@ -244,14 +244,14 @@ getAllQuestion().then(function(returnVal){
 
 
                  if (ate == "yes" &&  sugarLevel >= 8.5){ //high
-                  cool = 1;
+                  hot = 1;
                 } else if(ate = "no" && sugarLevel > 7){  //high
-                  cool = 1;
+                  hot  = 1;
                 }else{
-                  cool = 0;
+                  hot = 0;
                 }
 
-                if (cool == 0){
+                if (hot == 0){
 
                 text = "I'll get this logged for you ASAP. "
                     + monitorResult(ate, sugarLevel, exercise, weight);
@@ -259,30 +259,30 @@ getAllQuestion().then(function(returnVal){
                      break;
              }
 
+             if  (hot == 1){
+             text = high[hCount].title;
+
+             if (req.body.result.parameters.number.length != 0) {
+               highAnswers.push(req.body.result.parameters.number);
+            } else if (req.body.result.parameters.yesno.length != 0) {
+              highAnswers.push(req.body.result.parameters.yesno);
+            }
+
+            var ate = monitorAnswers[0];     //Storing answers at the end
+            var sugarLevel = monitorAnswers[1];
+            if (ate == "yes" &&  sugarLevel >= 8.5){ //high
+             hCount = 1;
+           } else if(ate = "no" && sugarLevel > 7){  //high
+             hCount = 1;
+           }
+              hCount ++;
+              break;
+         }
        break;
     }
 
-    if  (cool == 1){
-    text = high[hCount].title;
-
-    if (req.body.result.parameters.number.length != 0) {
-      highAnswers.push(req.body.result.parameters.number);
-   } else if (req.body.result.parameters.yesno.length != 0) {
-     highAnswers.push(req.body.result.parameters.yesno);
-   }
-
-   var ate = monitorAnswers[0];     //Storing answers at the end
-   var sugarLevel = monitorAnswers[1];
-   if (ate == "yes" &&  sugarLevel >= 8.5){ //high
-    hCount = 1;
-  } else if(ate = "no" && sugarLevel > 7){  //high
-    hCount = 1;
-  }
-     hCount ++;
-     break;
-}
-
           if (hCount >= high.length){
+              mCount = 0;
               hCount = 0;
 
             var ate = monitorAnswers[0];     //Storing answers at the end
