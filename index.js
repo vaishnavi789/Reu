@@ -180,7 +180,7 @@ function copingResult(answers) {
 var mCount = 0;
 var hCount = 0;
 var lCount = 0;
-var tCount = 0;
+var cool = 0;
 var copingCount = 0;
 var monitorAnswers = [];
  var highAnswers = [];
@@ -244,22 +244,26 @@ getAllQuestion().then(function(returnVal){
 
 
                  if (ate == "yes" &&  sugarLevel >= 8.5){ //high
-                  tCount = 1;
+                  cool = 1;
                 } else if(ate = "no" && sugarLevel > 7){  //high
-                  tCount = 1;
-                }
+                  cool = 1;
+                }else{
+                  cool = 0;
+                }             
+                   
+       break;
+    }
 
-                if (tCount ==1){
-                 break;
-                }
+       if (cool == 0){
+         
+       text = "I'll get this logged for you ASAP. "
+           + monitorResult(ate, sugarLevel, exercise, weight);
+            + "What else can I do for you?";     
+                   
+            break;
+      }
 
-                text = "I'll get this logged for you ASAP. "
-                    + monitorResult(ate, sugarLevel, exercise, weight);
-                     + "What else can I do for you?";
-         break;
-       }
-
-           if  (tCount == 1){
+           if  (cool == 1){
            text = high[hCount].title;
 
            if (req.body.result.parameters.number.length != 0) {
