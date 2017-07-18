@@ -276,28 +276,35 @@ getAllQuestion().then(function(returnVal){
               hCount ++;
               break;
          }
-
-         if (hCount >= high.length){
-             hCount = 0;
-
-           var ate = monitorAnswers[0];     //Storing answers at the end
-           var sugarLevel = monitorAnswers[1];
-           var medication = monitorAnswers[2];
-           var exercise = monitorAnswers[3];
-           var weight = monitorAnswers[4];
-
-         console.log(monitorAnswers);
-         console.log(highAnswers);
-          date = req.body.timestamp;
-          console.log(date);
-
-         text = "I'll get this logged for you ASAP. "
-              + monitorResult(ate, sugarLevel, exercise, weight);
-              + "What else can I do for you?";
-          break;
-       }
        break;
     }
+
+    if (hCount >= high.length){
+
+      if (req.body.result.parameters.number.length != 0) {
+        highAnswers.push(req.body.result.parameters.number);
+     } else if (req.body.result.parameters.yesno.length != 0) {
+       highAnswers.push(req.body.result.parameters.yesno);
+     }
+     
+        hCount = 0;
+
+      var ate = monitorAnswers[0];     //Storing answers at the end
+      var sugarLevel = monitorAnswers[1];
+      var medication = monitorAnswers[2];
+      var exercise = monitorAnswers[3];
+      var weight = monitorAnswers[4];
+
+    console.log(monitorAnswers);
+    console.log(highAnswers);
+     date = req.body.timestamp;
+     console.log(date);
+
+    text = "I'll get this logged for you ASAP. "
+         + monitorResult(ate, sugarLevel, exercise, weight);
+         + "What else can I do for you?";
+     break;
+  }
 
                 text = monitoring[mCount].title; //first part of question
 
