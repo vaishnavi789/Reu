@@ -234,9 +234,9 @@ getAllQuestion().then(function(returnVal){
               monitorAnswers.push(req.body.result.parameters.yesno);
            }
 
-        //   mCount = 0;
+           mCount = 0;     //problem area
 
-           var ate = monitorAnswers[0];     //Storing answers at the end
+           var ate = monitorAnswers[0];     
            var sugarLevel = monitorAnswers[1];
            var medication = monitorAnswers[2];
            var exercise = monitorAnswers[3];
@@ -281,8 +281,7 @@ getAllQuestion().then(function(returnVal){
        break;
     }
 
-          if (hCount >= high.length){
-              mCount = 0;
+          if (hCount >= high.length){            
               hCount = 0;
 
             var ate = monitorAnswers[0];     //Storing answers at the end
