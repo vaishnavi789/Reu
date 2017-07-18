@@ -242,82 +242,77 @@ getAllQuestion().then(function(returnVal){
            var exercise = monitorAnswers[3];
            var weight = monitorAnswers[4];
 
-
                  if (ate == "yes" &&  sugarLevel >= 8.5){ //high
                   hot = 1;
                 } else if(ate = "no" && sugarLevel > 7){  //high
                   hot  = 1;
-                }else{
+                }else {
                   hot = 0;
                 }
-
-                if (hot == 0){
-
-                text = "I'll get this logged for you ASAP. "
-                    + monitorResult(ate, sugarLevel, exercise, weight);
-                     + "What else can I do for you?";
-                     break;
-             }
-
-             if  (hot == 1){
-             text = high[hCount].title;
-
-             if (req.body.result.parameters.number.length != 0) {
-               highAnswers.push(req.body.result.parameters.number);
-            } else if (req.body.result.parameters.yesno.length != 0) {
-              highAnswers.push(req.body.result.parameters.yesno);
-            }
-
-            if (ate == "yes" &&  sugarLevel >= 8.5){ //high
-             hCount = 1;
-           } else if(ate = "no" && sugarLevel > 7){  //high
-             hCount = 1;
-           }
-              hCount ++;
-              break;
-         }
-
-       break;
-    }
-
-    if (hCount >= high.length){
-
-      if (req.body.result.parameters.number.length != 0) {
-        highAnswers.push(req.body.result.parameters.number);
-     } else if (req.body.result.parameters.yesno.length != 0) {
-       highAnswers.push(req.body.result.parameters.yesno);
-     }
-
-      hCount = 0;
-
-     console.log(highAnswers);
-
-          if (mCount >= monitoring.length){
-      if (req.body.result.parameters.number.length != 0) {
-         monitorAnswers.push(req.body.result.parameters.number);
-     } else if (req.body.result.parameters.yesno.length != 0) {
-        monitorAnswers.push(req.body.result.parameters.yesno);
-     }
-
-      mCount = 0;     //problem area
-
-      var ate = monitorAnswers[0];
-      var sugarLevel = monitorAnswers[1];
-      var medication = monitorAnswers[2];
-      var exercise = monitorAnswers[3];
-      var weight = monitorAnswers[4];
-
-     console.log(monitorAnswers);
-     date = req.body.timestamp;s
-     console.log(date);
-
-     text = "I'll get this logged for you ASAP. "
-         + monitorResult(ate, sugarLevel, exercise, weight);
-          + "What else can I do for you?";
-       break;
-   }
     break;
   }
+
+  if (hot == 0){
+
+  text = "I'll get this logged for you ASAP. "
+      + monitorResult(ate, sugarLevel, exercise, weight);
+       + "What else can I do for you?";
+       break;
+ }
+
+     if (hot == 1){
+    text = high[hCount].title;
+
+if (req.body.result.parameters.number.length != 0) {
+ highAnswers.push(req.body.result.parameters.number);
+} else if (req.body.result.parameters.yesno.length != 0) {
+highAnswers.push(req.body.result.parameters.yesno);
+}
+
+var ate = monitorAnswers[0];
+var sugarLevel = monitorAnswers[1];
+if (ate == "yes" &&  sugarLevel >= 8.5){ //high
+hCount = 1;
+} else if(ate = "no" && sugarLevel > 7){  //high
+hCount = 1;
+}
+hCount ++;
+break;
+}
+
+  if (hCount >= high.length){
+
+    if (req.body.result.parameters.number.length != 0) {
+      highAnswers.push(req.body.result.parameters.number);
+   } else if (req.body.result.parameters.yesno.length != 0) {
+     highAnswers.push(req.body.result.parameters.yesno);
+   }
+
+        hCount = 0;
+
+   console.log(highAnswers);
+
+      if  (mCount == 0){  //problem area
+
+    var ate = monitorAnswers[0];
+    var sugarLevel = monitorAnswers[1];
+    var medication = monitorAnswers[2];
+    var exercise = monitorAnswers[3];
+    var weight = monitorAnswers[4];
+
+   console.log(monitorAnswers);
+   date = req.body.timestamp;s
+   console.log(date);
+
+   text = "I'll get this logged for you ASAP. "
+       + monitorResult(ate, sugarLevel, exercise, weight);
+        + "What else can I do for you?";
+        break;
+      }
+
+     break;
+ }
+
 
                 text = monitoring[mCount].title; //first part of question
 
