@@ -240,7 +240,7 @@ getAllQuestion().then(function(returnVal){
                         highAnswers.push(req.body.result.parameters.yesno);
                     }
                     hCount = 0;
-                    mCount = 0; 
+                    mCount = 0;
                     console.log(highAnswers);
 
                     if  (mCount == 0){  //problem area
@@ -272,7 +272,7 @@ getAllQuestion().then(function(returnVal){
 
                 if (ate == "yes" &&  sugarLevel >= 8.5){ //high
                     hot = 1;
-                } else if(ate = "no" && sugarLevel > 7){  //high
+                } else if(ate == "no" && sugarLevel > 7){  //high
                     hot  = 1;
                 }else {
                     hot = 0;
@@ -348,7 +348,7 @@ getAllQuestion().then(function(returnVal){
                 var sugarLevel = monitorAnswers[1];
                 if (ate == "yes" &&  sugarLevel >= 8.5){ //high
                     mCount = 3;
-                }else if(ate = "no" && sugarLevel > 7){  //high
+                }else if(ate == "no" && sugarLevel > 7){  //high
                     mCount = 3;
                 }else if (ate == "no" &&  sugarLevel >= 4 && sugarLevel <= 7){
                     mCount = 2;
