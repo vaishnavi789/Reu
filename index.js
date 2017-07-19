@@ -201,8 +201,8 @@ var date = 0;
 
 getAllQuestion().then(function(returnVal){
     monitoring = returnVal.monitoring
-     high = returnVal.high
-     low = returnVal.low
+    high = returnVal.high
+    low = returnVal.low
     coping = returnVal.coping
     vegetables = returnVal.vegetables
     proteins = returnVal.proteins
@@ -226,120 +226,140 @@ getAllQuestion().then(function(returnVal){
                 action = "start.monitor";
 
             case "start.monitor":
-           if (mCount >= monitoring.length){
-
-            if (req.body.result.parameters.number.length != 0) {
-               monitorAnswers.push(req.body.result.parameters.number);
-           } else if (req.body.result.parameters.yesno.length != 0) {
-              monitorAnswers.push(req.body.result.parameters.yesno);
-           }
-
-           mCount = 0;     //problem area
-
-           var ate = monitorAnswers[0];
-           var sugarLevel = monitorAnswers[1];
-           var medication = monitorAnswers[2];
-           var exercise = monitorAnswers[3];
-           var weight = monitorAnswers[4];
-
-         if (ate == "no" &&  sugarLevel >= 4 && sugarLevel <= 7){
-             hot = 0;
-        } else if (ate == "yes" && sugarLevel < 8.5){
-             hot = 0;
-          }
-
-           if (hot == 0){
-           text = "I'll get this logged for you ASAP. "
-               + monitorResult(ate, sugarLevel, exercise, weight);
-                + "What else can I do for you?";
-                break;
-          }
-
-       break;
-  }
-
-if (mCount == 0){
-
-text = high[hCount].title;
-
-if (req.body.result.parameters.number.length != 0) {
-highAnswers.push(req.body.result.parameters.number);
-} else if (req.body.result.parameters.yesno.length != 0) {
-highAnswers.push(req.body.result.parameters.yesno);
-}
-
-var ate = monitorAnswers[0];
-var sugarLevel = monitorAnswers[1];
-if (ate == "yes" &&  sugarLevel >= 8.5){ //high
-hCount = 1;
-} else if(ate == "no" && sugarLevel > 7){  //high
-hCount = 1;
-}
-hCount ++;
-break;
-
-}
-
-  if (hCount >= high.length){
-
-    if (req.body.result.parameters.number.length != 0) {
-      highAnswers.push(req.body.result.parameters.number);
-   } else if (req.body.result.parameters.yesno.length != 0) {
-     highAnswers.push(req.body.result.parameters.yesno);
-   }
-
-        hCount = 0;
-
-   console.log(highAnswers);
-
-      if  (mCount == 0){  //problem area
-
-    var ate = monitorAnswers[0];
-    var sugarLevel = monitorAnswers[1];
-    var medication = monitorAnswers[2];
-    var exercise = monitorAnswers[3];
-    var weight = monitorAnswers[4];
-
-   console.log(monitorAnswers);
-   date = req.body.timestamp;s
-   console.log(date);
-
-   text = "I'll get this logged for you ASAP. "
-       + monitorResult(ate, sugarLevel, exercise, weight);
-        + "What else can I do for you?";
-        break;
-      }
-
-     break;
- }
-
-
-                text = monitoring[mCount].title; //first part of question
+            if (mCount >= monitoring.length){
 
                 if (req.body.result.parameters.number.length != 0) {
-                    monitorAnswers.push(req.body.result.parameters.number);   //monitioring answ
+                    monitorAnswers.push(req.body.result.parameters.number);
                 } else if (req.body.result.parameters.yesno.length != 0) {
                     monitorAnswers.push(req.body.result.parameters.yesno);
                 }
+                if (hCount >= high.length){
+                    if (req.body.result.parameters.number.length != 0) {
+                        highAnswers.push(req.body.result.parameters.number);
+                    } else if (req.body.result.parameters.yesno.length != 0) {
+                        highAnswers.push(req.body.result.parameters.yesno);
+                    }
+                    hCount = 0;
+                    mCount = 0; 
+                    console.log(highAnswers);
 
-                if (mCount == 2){
+                    if  (mCount == 0){  //problem area
+
+                        var ate = monitorAnswers[0];
+                        var sugarLevel = monitorAnswers[1];
+                        var medication = monitorAnswers[2];
+                        var exercise = monitorAnswers[3];
+                        var weight = monitorAnswers[4];
+
+                        console.log(monitorAnswers);
+                        date = req.body.timestamp;
+                        console.log(date);
+
+                        text = "I'll get this logged for you ASAP. "
+                                + monitorResult(ate, sugarLevel, exercise, weight);
+                                + "What else can I do for you?";
+                        break;
+                    }
+                    break;
+                }
+                    //problem area
+
+                var ate = monitorAnswers[0];
+                var sugarLevel = monitorAnswers[1];
+                var medication = monitorAnswers[2];
+                var exercise = monitorAnswers[3];
+                var weight = monitorAnswers[4];
+
+                if (ate == "yes" &&  sugarLevel >= 8.5){ //high
+                    hot = 1;
+                } else if(ate = "no" && sugarLevel > 7){  //high
+                    hot  = 1;
+                }else {
+                    hot = 0;
+                }
+
+                if (hot == 0){
+                    text = "I'll get this logged for you ASAP. "
+                            + monitorResult(ate, sugarLevel, exercise, weight);
+                            + "What else can I do for you?";
+                    break;
+                }
+                if (hot == 1){
+                    text = high[hCount].title;
+
+                    if (req.body.result.parameters.number.length != 0) {
+                        highAnswers.push(req.body.result.parameters.number);
+                    } else if (req.body.result.parameters.yesno.length != 0) {
+                        highAnswers.push(req.body.result.parameters.yesno);
+                    }
+
+                    var ate = monitorAnswers[0];
+                    var sugarLevel = monitorAnswers[1];
+                    if (ate == "yes" &&  sugarLevel >= 8.5){ //high
+                        hCount = 1;
+                    } else if(ate = "no" && sugarLevel > 7){  //high
+                        hCount = 1;
+                    }
+                    hCount ++;
+                    break;
+                }
+                break;
+            }
+
+            // if (hCount >= high.length){
+            //     if (req.body.result.parameters.number.length != 0) {
+            //         highAnswers.push(req.body.result.parameters.number);
+            //     } else if (req.body.result.parameters.yesno.length != 0) {
+            //         highAnswers.push(req.body.result.parameters.yesno);
+            //     }
+            //     hCount = 0;
+            //     console.log(highAnswers);
+
+            //     if  (mCount == 0){  //problem area
+
+            //         var ate = monitorAnswers[0];
+            //         var sugarLevel = monitorAnswers[1];
+            //         var medication = monitorAnswers[2];
+            //         var exercise = monitorAnswers[3];
+            //         var weight = monitorAnswers[4];
+
+            //         console.log(monitorAnswers);
+            //         date = req.body.timestamp;s
+            //         console.log(date);
+
+            //         text = "I'll get this logged for you ASAP. "
+            //                 + monitorResult(ate, sugarLevel, exercise, weight);
+            //                 + "What else can I do for you?";
+            //         break;
+            //     }
+            //     break;
+            // }
+
+            text = monitoring[mCount].title; //first part of question
+
+            if (req.body.result.parameters.number.length != 0) {
+                monitorAnswers.push(req.body.result.parameters.number);   //monitioring answ
+            } else if (req.body.result.parameters.yesno.length != 0) {
+                monitorAnswers.push(req.body.result.parameters.yesno);
+            }
+
+            if (mCount == 2){
                 var ate = monitorAnswers[0];
                 var sugarLevel = monitorAnswers[1];
                 if (ate == "yes" &&  sugarLevel >= 8.5){ //high
-                 mCount = 3;
-               }else if(ate == "no" && sugarLevel > 7){  //high
-                 mCount = 3;
+                    mCount = 3;
+                }else if(ate = "no" && sugarLevel > 7){  //high
+                    mCount = 3;
                 }else if (ate == "no" &&  sugarLevel >= 4 && sugarLevel <= 7){
-                 mCount = 2;
-               }else if (ate == "yes" && sugarLevel < 8.5){
-                 mCount = 2;
-              }else{
-                 mCount = 2;
-               }
+                    mCount = 2;
+                }else if (ate == "yes" && sugarLevel < 8.5){
+                    mCount = 2;
+                }else{
+                    mCount = 2;
+                }
             }
-                mCount ++;
-                break;
-
+            mCount ++;
+            break;
 
             case "coping.continue":
                 action = "start.coping";
