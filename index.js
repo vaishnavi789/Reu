@@ -233,7 +233,6 @@ getAllQuestion().then(function(returnVal){
                 } else if (req.body.result.parameters.yesno.length != 0) {
                     monitorAnswers.push(req.body.result.parameters.yesno);
                 }
-                    mCount = 0;
 
                 if (hCount >= high.length){
                     if (req.body.result.parameters.number.length != 0) {
@@ -241,10 +240,18 @@ getAllQuestion().then(function(returnVal){
                     } else if (req.body.result.parameters.yesno.length != 0) {
                         highAnswers.push(req.body.result.parameters.yesno);
                     }
-                      hCount = 0;
-                    
+
+                       hCount = 0;
 
                      console.log(highAnswers);
+
+                     if (req.body.result.parameters.number.length != 0) {
+                         monitorAnswers.push(req.body.result.parameters.number);
+                     } else if (req.body.result.parameters.yesno.length != 0) {
+                         monitorAnswers.push(req.body.result.parameters.yesno);
+                     }
+
+                        mCount = 0;
 
                         var ate = monitorAnswers[0];
                         var sugarLevel = monitorAnswers[1];
@@ -292,13 +299,15 @@ getAllQuestion().then(function(returnVal){
                         highAnswers.push(req.body.result.parameters.yesno);
                     }
 
+                    if (hCount == 1){
                     var ate = monitorAnswers[0];
                     var sugarLevel = monitorAnswers[1];
                     if (ate == "yes" &&  sugarLevel >= 8.5){ //high
-                        hCount = 2;
+                        hCount = 1;
                     } else if(ate == "no" && sugarLevel > 7){  //high
-                        hCount = 2;
-                    }
+                        hCount = 1;
+                     }
+                  }
                     hCount ++;
                     break;
                }
