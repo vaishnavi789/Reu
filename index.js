@@ -241,7 +241,7 @@ getAllQuestion().then(function(returnVal){
                         highAnswers.push(req.body.result.parameters.yesno);
                     }
                   //  hCount = 0;
-                    mCount = 0;
+                  //  mCount = 0;
                     console.log(highAnswers);
 
                         var ate = monitorAnswers[0];
