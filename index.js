@@ -240,9 +240,8 @@ getAllQuestion().then(function(returnVal){
                     } else if (req.body.result.parameters.yesno.length != 0) {
                         highAnswers.push(req.body.result.parameters.yesno);
                     }
-                  //  hCount = 0;
-                  //  mCount = 0;
-                    console.log(highAnswers);
+
+                     console.log(highAnswers);
 
                         var ate = monitorAnswers[0];
                         var sugarLevel = monitorAnswers[1];
@@ -253,6 +252,9 @@ getAllQuestion().then(function(returnVal){
                         console.log(monitorAnswers);
                         date = req.body.timestamp;
                         console.log(date);
+
+                         hCount = 0;
+                         mCount = 0;
 
                         text = "I'll get this logged for you ASAP. "
                                 + monitorResult(ate, sugarLevel, exercise, weight);
