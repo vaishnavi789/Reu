@@ -242,46 +242,44 @@ getAllQuestion().then(function(returnVal){
            var exercise = monitorAnswers[3];
            var weight = monitorAnswers[4];
 
-                 if (ate == "yes" &&  sugarLevel >= 8.5){ //high
-                  hot = 1;
-                } else if(ate = "no" && sugarLevel > 7){  //high
-                  hot  = 1;
-                }else {
-                  hot = 0;
-                }
-
-                if (hot == 0){
-
-                text = "I'll get this logged for you ASAP. "
-                    + monitorResult(ate, sugarLevel, exercise, weight);
-                     + "What else can I do for you?";
-                     break;
-               }
-
-           if (hot == 1){
-           text = high[hCount].title;
-
-          if (req.body.result.parameters.number.length != 0) {
-           highAnswers.push(req.body.result.parameters.number);
-          } else if (req.body.result.parameters.yesno.length != 0) {
-          highAnswers.push(req.body.result.parameters.yesno);
+         if (ate == "no" &&  sugarLevel >= 4 && sugarLevel <= 7){
+             hot = 0;
+        } else if (ate == "yes" && sugarLevel < 8.5){
+             hot = 0;
           }
 
-          var ate = monitorAnswers[0];
-          var sugarLevel = monitorAnswers[1];
-          if (ate == "yes" &&  sugarLevel >= 8.5){ //high
-          hCount = 1;
-          } else if(ate = "no" && sugarLevel > 7){  //high
-          hCount = 1;
+           if (hot == 0){
+           text = "I'll get this logged for you ASAP. "
+               + monitorResult(ate, sugarLevel, exercise, weight);
+                + "What else can I do for you?";
+                break;
           }
-
-          hCount ++;
-          break;
-          }
-
        break;
   }
 
+if (mCount >= monitoring.length){
+
+if (hot == 1){
+text = high[hCount].title;
+
+if (req.body.result.parameters.number.length != 0) {
+highAnswers.push(req.body.result.parameters.number);
+} else if (req.body.result.parameters.yesno.length != 0) {
+highAnswers.push(req.body.result.parameters.yesno);
+}
+
+var ate = monitorAnswers[0];
+var sugarLevel = monitorAnswers[1];
+if (ate == "yes" &&  sugarLevel >= 8.5){ //high
+hCount = 1;
+} else if(ate == "no" && sugarLevel > 7){  //high
+hCount = 1;
+}
+hCount ++;
+break;
+
+}
+}
 
   if (hCount >= high.length){
 
@@ -330,8 +328,10 @@ getAllQuestion().then(function(returnVal){
                 var sugarLevel = monitorAnswers[1];
                 if (ate == "yes" &&  sugarLevel >= 8.5){ //high
                  mCount = 3;
-               }else if(ate = "no" && sugarLevel > 7){  //high
+                 hot = 1;
+               }else if(ate == "no" && sugarLevel > 7){  //high
                  mCount = 3;
+                 hot = 1;
                 }else if (ate == "no" &&  sugarLevel >= 4 && sugarLevel <= 7){
                  mCount = 2;
                }else if (ate == "yes" && sugarLevel < 8.5){
