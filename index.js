@@ -233,6 +233,7 @@ getAllQuestion().then(function(returnVal){
                 } else if (req.body.result.parameters.yesno.length != 0) {
                     monitorAnswers.push(req.body.result.parameters.yesno);
                 }
+
                 if (hCount >= high.length){
                     if (req.body.result.parameters.number.length != 0) {
                         highAnswers.push(req.body.result.parameters.number);
@@ -260,9 +261,9 @@ getAllQuestion().then(function(returnVal){
                                 + "What else can I do for you?";
                         break;
                     }
+
                     break;
                 }
-                    //problem area
 
                 var ate = monitorAnswers[0];
                 var sugarLevel = monitorAnswers[1];
@@ -284,6 +285,7 @@ getAllQuestion().then(function(returnVal){
                             + "What else can I do for you?";
                     break;
                 }
+
                 if (hot == 1){
                     text = high[hCount].title;
 
@@ -297,7 +299,7 @@ getAllQuestion().then(function(returnVal){
                     var sugarLevel = monitorAnswers[1];
                     if (ate == "yes" &&  sugarLevel >= 8.5){ //high
                         hCount = 1;
-                    } else if(ate = "no" && sugarLevel > 7){  //high
+                    } else if(ate == "no" && sugarLevel > 7){  //high
                         hCount = 1;
                     }
                     hCount ++;
