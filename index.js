@@ -244,8 +244,6 @@ getAllQuestion().then(function(returnVal){
                     mCount = 0;
                     console.log(highAnswers);
 
-                    if  (mCount == 0){  //problem area
-
                         var ate = monitorAnswers[0];
                         var sugarLevel = monitorAnswers[1];
                         var medication = monitorAnswers[2];
@@ -260,9 +258,6 @@ getAllQuestion().then(function(returnVal){
                                 + monitorResult(ate, sugarLevel, exercise, weight);
                                 + "What else can I do for you?";
                         break;
-                    }
-
-                    break;
                 }
 
                 var ate = monitorAnswers[0];
@@ -305,6 +300,7 @@ getAllQuestion().then(function(returnVal){
                     hCount ++;
                     break;
                 }
+
                 break;
             }
 
