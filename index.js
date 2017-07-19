@@ -240,7 +240,7 @@ getAllQuestion().then(function(returnVal){
                     } else if (req.body.result.parameters.yesno.length != 0) {
                         highAnswers.push(req.body.result.parameters.yesno);
                     }
-                    hCount = 0;
+                  //  hCount = 0;
                     mCount = 0;
                     console.log(highAnswers);
 
