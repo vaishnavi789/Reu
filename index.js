@@ -181,6 +181,8 @@ var mCount = 0;
 var hCount = 0;
 var lCount = 0;
 var hot = 0;
+var cold = 0;
+var normal = 0;
 var copingCount = 0;
 var monitorAnswers = [];
  var highAnswers = [];
@@ -269,6 +271,41 @@ getAllQuestion().then(function(returnVal){
                         break;
                 }
 
+                if (lCount >= low.length){
+                    if (req.body.result.parameters.number.length != 0) {
+                        lowAnswers.push(req.body.result.parameters.number);
+                    } else if (req.body.result.parameters.yesno.length != 0) {
+                        lowAnswers.push(req.body.result.parameters.yesno);
+                    }
+
+                       lCount = 0;
+
+                     console.log(lowAnswers);
+
+                     if (req.body.result.parameters.number.length != 0) {
+                         monitorAnswers.push(req.body.result.parameters.number);
+                     } else if (req.body.result.parameters.yesno.length != 0) {
+                         monitorAnswers.push(req.body.result.parameters.yesno);
+                     }
+
+                        mCount = 0;
+
+                        var ate = monitorAnswers[0];
+                        var sugarLevel = monitorAnswers[1];
+                        var medication = monitorAnswers[2];
+                        var exercise = monitorAnswers[3];
+                        var weight = monitorAnswers[4];
+
+                        console.log(monitorAnswers);
+                        date = req.body.timestamp;
+                        console.log(date);
+
+                        text = "I'll get this logged for you ASAP. "
+                                + monitorResult(ate, sugarLevel, exercise, weight);
+                                + "What else can I do for you?";
+                        break;
+                }
+
                 var ate = monitorAnswers[0];
                 var sugarLevel = monitorAnswers[1];
                 var medication = monitorAnswers[2];
@@ -276,14 +313,18 @@ getAllQuestion().then(function(returnVal){
                 var weight = monitorAnswers[4];
 
                 if (ate == "yes" &&  sugarLevel >= 8.5){ //high
-                    hot = 1;
+                     hot = 1;
                 } else if(ate == "no" && sugarLevel > 7){  //high
-                    hot  = 1;
-                }else {
-                    hot = 0;
+                     hot  = 1;
+                }else if(ate == "no" &&  sugarLevel >= 4 && sugarLevel <= 7){
+                   normal = 1;
+                }else if(ate == "yes" && sugarLevel < 8.5){
+                   normal = 1;
+                }else{
+                    cold = 1;
                 }
 
-                if (hot == 0){
+                if (normal == 1){
                     text = "I'll get this logged for you ASAP. "
                             + monitorResult(ate, sugarLevel, exercise, weight);
                             + "What else can I do for you?";
@@ -312,9 +353,23 @@ getAllQuestion().then(function(returnVal){
                     break;
                }
 
+               if (cold == 1){
+                   text = low[lCount].title;
+
+                   if (req.body.result.parameters.number.length != 0) {
+                       lowAnswers.push(req.body.result.parameters.number);
+                   } else if (req.body.result.parameters.yesno.length != 0) {
+                       lowAnswers.push(req.body.result.parameters.yesno);
+                   }
+
+                   if (lCount == 1){
+                    lCount ++;
+                 }
+                    break;
+              }
+
                 break;
             }
-
 
             text = monitoring[mCount].title; //first part of question
 
