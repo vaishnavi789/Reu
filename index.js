@@ -272,7 +272,6 @@ getAllQuestion().then(function(returnVal){
                         break;
                 }
 
-
                 var ate = monitorAnswers[0];
                 var sugarLevel = monitorAnswers[1];
                 var medication = monitorAnswers[2];
@@ -287,7 +286,7 @@ getAllQuestion().then(function(returnVal){
                    normal = 1;
                 }else if(ate == "yes" && sugarLevel < 8.5){
                    normal = 1;
-                }else{
+                }else if(ate == "no" && sugarLevel < 8){
                     cold = 1;
                 }
 
@@ -330,11 +329,16 @@ getAllQuestion().then(function(returnVal){
                    }  
                    
                       if (lCount == 1){
+                        var ate = monitorAnswers[0];
+                        var sugarLevel = monitorAnswers[1];
+                        
+                       if (ate == "no" && sugarLevel < 8)
+                          {
                         lCount = 1;
+                          }
                       } 
-                                                      
-                    lCount ++;                 
-                    break;
+                      lCount ++;                 
+                      break;                                              
               }
 
                 break;
