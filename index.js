@@ -271,7 +271,7 @@ getAllQuestion().then(function(returnVal){
 
                        lCount = 0;
 
-                     console.log(highAnswers);
+                     console.log(lowAnswers);
 
                      if (req.body.result.parameters.number.length != 0) {
                          monitorAnswers.push(req.body.result.parameters.number);
@@ -311,7 +311,7 @@ getAllQuestion().then(function(returnVal){
                    normal = 1;
                 }else if(ate == "yes" && sugarLevel < 8.5){
                    normal = 1;
-                }else if(ate == "no" && sugarLevel < 8){
+                }else{
                     cold = 1;
                 }
 
@@ -352,17 +352,8 @@ getAllQuestion().then(function(returnVal){
                    } else if (req.body.result.parameters.yesno.length != 0) {
                        lowAnswers.push(req.body.result.parameters.yesno);
                    }
-
-                      if (lCount == 1){
-                        var ate = monitorAnswers[0];
-                        var sugarLevel = monitorAnswers[1];
-
-                       if (ate == "no" && sugarLevel < 8)
-                          {
-                        lCount = 1;
-                          }
-                      }
-                         lCount ++;
+                   
+                      lCount ++;
                       break;
               }
 
