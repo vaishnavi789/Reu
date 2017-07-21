@@ -262,41 +262,6 @@ getAllQuestion().then(function(returnVal){
                         break;
                 }
 
-                if (lCount >= low.length){
-                    if (req.body.result.parameters.number.length != 0) {
-                        lowAnswers.push(req.body.result.parameters.number);
-                    } else if (req.body.result.parameters.yesno.length != 0) {
-                        lowAnswers.push(req.body.result.parameters.yesno);
-                    }
-
-                       lCount = 0;
-
-                     console.log(lowAnswers);
-
-                     if (req.body.result.parameters.number.length != 0) {
-                         monitorAnswers.push(req.body.result.parameters.number);
-                     } else if (req.body.result.parameters.yesno.length != 0) {
-                         monitorAnswers.push(req.body.result.parameters.yesno);
-                     }
-
-                        mCount = 0;
-
-                        var ate = monitorAnswers[0];
-                        var sugarLevel = monitorAnswers[1];
-                        var medication = monitorAnswers[2];
-                        var exercise = monitorAnswers[3];
-                        var weight = monitorAnswers[4];
-
-                        console.log(monitorAnswers);
-                        date = req.body.timestamp;
-                        console.log(date);
-
-                        text = "I'll get this logged for you ASAP. "
-                                + monitorResult(ate, sugarLevel, exercise, weight);
-                                + "What else can I do for you?";
-                        break;
-                }
-
                 var ate = monitorAnswers[0];
                 var sugarLevel = monitorAnswers[1];
                 var medication = monitorAnswers[2];
