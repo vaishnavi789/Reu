@@ -353,7 +353,7 @@ getAllQuestion().then(function(returnVal){
                        lowAnswers.push(req.body.result.parameters.yesno);
                    }                   
                          if (lCount == 1){
-                         lCount = 1;
+                         lCount = 2;
                        }
                        
                         lCount ++;
