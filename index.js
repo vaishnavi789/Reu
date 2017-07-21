@@ -29,17 +29,6 @@ function getAllQuestion() {
         return monitoringQuestions;
     })
 
-      // var high = admin.database().ref('/').child('high');
-      //  var highMonitoring = high.once('value').then(function (snapshot){
-      //    var highQuestions = []
-      //   var obj = snapshot.val();
-      //    for (var i in obj){
-      //      highQuestions.push(obj[i]);
-      //   }
-      //   return highQuestions;
-      // })
-
-
 
     var afterCoping = afterMonitoring.then(function (monitoringQuestions) {
         var data = {}
@@ -119,8 +108,8 @@ function getAllQuestion() {
         });
         return ref;
     });
-       return afterLow;  
- 
+       return afterLow;
+
     var afterHigh = afterVeggies.then(function (returnedData) {
         var ref = admin.database().ref("/").child('high').once('value').then(function (snapshot) {
             var highQuestions = []
@@ -273,6 +262,41 @@ getAllQuestion().then(function(returnVal){
                         break;
                 }
 
+                if (lCount >= low.length){
+                    if (req.body.result.parameters.number.length != 0) {
+                        lowAnswers.push(req.body.result.parameters.number);
+                    } else if (req.body.result.parameters.yesno.length != 0) {
+                        lowAnswers.push(req.body.result.parameters.yesno);
+                    }
+
+                       lCount = 0;
+
+                     console.log(lowAnswers);
+
+                     if (req.body.result.parameters.number.length != 0) {
+                         monitorAnswers.push(req.body.result.parameters.number);
+                     } else if (req.body.result.parameters.yesno.length != 0) {
+                         monitorAnswers.push(req.body.result.parameters.yesno);
+                     }
+
+                        mCount = 0;
+
+                        var ate = monitorAnswers[0];
+                        var sugarLevel = monitorAnswers[1];
+                        var medication = monitorAnswers[2];
+                        var exercise = monitorAnswers[3];
+                        var weight = monitorAnswers[4];
+
+                        console.log(monitorAnswers);
+                        date = req.body.timestamp;
+                        console.log(date);
+
+                        text = "I'll get this logged for you ASAP. "
+                                + monitorResult(ate, sugarLevel, exercise, weight);
+                                + "What else can I do for you?";
+                        break;
+                }
+
                 var ate = monitorAnswers[0];
                 var sugarLevel = monitorAnswers[1];
                 var medication = monitorAnswers[2];
@@ -320,53 +344,55 @@ getAllQuestion().then(function(returnVal){
                     break;
                }
 
-                break;
-            }           
+                 if (cold == 1){
                    text = low[lCount].title;
 
                    if (req.body.result.parameters.number.length != 0) {
                        lowAnswers.push(req.body.result.parameters.number);
                    } else if (req.body.result.parameters.yesno.length != 0) {
                        lowAnswers.push(req.body.result.parameters.yesno);
-                   }  
-                   
+                   }
+
                       if (lCount == 1){
                         var ate = monitorAnswers[0];
                         var sugarLevel = monitorAnswers[1];
-                        
+
                        if (ate == "no" && sugarLevel < 8)
                           {
                         lCount = 1;
                           }
-                      } 
-                      lCount ++;                 
-                      break;                                              
-                    
-//             text = monitoring[mCount].title; //first part of question
+                      }
+                      lCount ++;
+                      break;
+              }
 
-//             if (req.body.result.parameters.number.length != 0) {
-//                 monitorAnswers.push(req.body.result.parameters.number);   //monitioring answ
-//             } else if (req.body.result.parameters.yesno.length != 0) {
-//                 monitorAnswers.push(req.body.result.parameters.yesno);
-//             }
+                break;
+            }
 
-//             if (mCount == 2){
-//                 var ate = monitorAnswers[0];
-//                 var sugarLevel = monitorAnswers[1];
-//                 if (ate == "yes" &&  sugarLevel >= 8.5){ //high
-//                     mCount = 3;
-//                 }else if(ate == "no" && sugarLevel > 7){  //high
-//                     mCount = 3;
-//                 }else if (ate == "no" &&  sugarLevel >= 4 && sugarLevel <= 7){
-//                     mCount = 2;
-//                 }else if (ate == "yes" && sugarLevel < 8.5){
-//                     mCount = 2;
-//                 }else{
-//                     mCount = 2;
-//                 }
-//             }
-//             mCount ++;
-          
+            text = monitoring[mCount].title; //first part of question
+
+            if (req.body.result.parameters.number.length != 0) {
+                monitorAnswers.push(req.body.result.parameters.number);   //monitioring answ
+            } else if (req.body.result.parameters.yesno.length != 0) {
+                monitorAnswers.push(req.body.result.parameters.yesno);
+            }
+
+            if (mCount == 2){
+                var ate = monitorAnswers[0];
+                var sugarLevel = monitorAnswers[1];
+                if (ate == "yes" &&  sugarLevel >= 8.5){ //high
+                    mCount = 3;
+                }else if(ate == "no" && sugarLevel > 7){  //high
+                    mCount = 3;
+                }else if (ate == "no" &&  sugarLevel >= 4 && sugarLevel <= 7){
+                    mCount = 2;
+                }else if (ate == "yes" && sugarLevel < 8.5){
+                    mCount = 2;
+                }else{
+                    mCount = 2;
+                }
+            }
+            mCount ++;
             break;
 
             case "coping.continue":
