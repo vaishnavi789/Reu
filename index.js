@@ -352,7 +352,7 @@ getAllQuestion().then(function(returnVal){
                    } else if (req.body.result.parameters.yesno.length != 0) {
                        lowAnswers.push(req.body.result.parameters.yesno);
                    }                   
-                         if (lCount == 1){
+                         if (lCount == 2){
                          lCount = 2;
                        }
                        
