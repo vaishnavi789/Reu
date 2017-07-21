@@ -79,7 +79,7 @@ function getAllQuestion() {
         });
         return ref;
     });
-    var afterStarches = afterProtein.then(function (returnedData) {    //fixed line afterVeggies
+    var afterStarches = afterVeggies.then(function (returnedData) {    //fixed line afterVeggies
         var ref = admin.database().ref("/").child('starches').once('value').then(function (snapshot) {
             var starchesList = []
             var obj = snapshot.val();
@@ -108,9 +108,9 @@ function getAllQuestion() {
         });
         return ref;
     });
-      
 
-    var afterHigh = afterVeggies.then(function (returnedData) {
+
+    var afterHigh = afterLow.then(function (returnedData) {
         var ref = admin.database().ref("/").child('high').once('value').then(function (snapshot) {
             var highQuestions = []
             var obj = snapshot.val();
