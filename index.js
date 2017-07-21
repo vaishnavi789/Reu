@@ -119,7 +119,8 @@ function getAllQuestion() {
         });
         return ref;
     });
-
+       return afterLow;  
+ 
     var afterHigh = afterVeggies.then(function (returnedData) {
         var ref = admin.database().ref("/").child('high').once('value').then(function (snapshot) {
             var highQuestions = []
