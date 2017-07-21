@@ -79,7 +79,7 @@ function getAllQuestion() {
         });
         return ref;
     });
-    var afterStarches = afterVeggies.then(function (returnedData) {
+    var afterStarches = afterProtein.then(function (returnedData) {    //fixed line afterVeggies
         var ref = admin.database().ref("/").child('starches').once('value').then(function (snapshot) {
             var starchesList = []
             var obj = snapshot.val();
@@ -108,7 +108,7 @@ function getAllQuestion() {
         });
         return ref;
     });
-       return afterLow;
+      
 
     var afterHigh = afterVeggies.then(function (returnedData) {
         var ref = admin.database().ref("/").child('high').once('value').then(function (snapshot) {
