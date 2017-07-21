@@ -262,10 +262,8 @@ getAllQuestion().then(function(returnVal){
                         break;
                 }
 
-                if (lCount >= low.length){
-                    if (req.body.result.parameters.number.length != 0) {
-                        lowAnswers.push(req.body.result.parameters.number);
-                    } else if (req.body.result.parameters.yesno.length != 0) {
+                  if (lCount >= low.length){
+                    if (req.body.result.parameters.yesno.length != 0) {
                         lowAnswers.push(req.body.result.parameters.yesno);
                     }
 
@@ -347,15 +345,13 @@ getAllQuestion().then(function(returnVal){
                  if (cold == 1){
                    text = low[lCount].title;
 
-                   if (req.body.result.parameters.number.length != 0) {
-                       lowAnswers.push(req.body.result.parameters.number);
-                   } else if (req.body.result.parameters.yesno.length != 0) {
+                 if (req.body.result.parameters.yesno.length != 0) {
                        lowAnswers.push(req.body.result.parameters.yesno);
-                   }                   
-                         if (lCount == 2){
-                         lCount = 2;
+                   }
+                         if (lCount == 1){
+                         lCount = 1;
                        }
-                       
+
                         lCount ++;
                         break;
               }
