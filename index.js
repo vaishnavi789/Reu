@@ -348,10 +348,6 @@ getAllQuestion().then(function(returnVal){
                  if (req.body.result.parameters.yesno.length != 0) {
                        lowAnswers.push(req.body.result.parameters.yesno);
                    }
-                         if (lCount == 1){
-                         lCount = 1;
-                       }
-
                         lCount ++;
                         break;
               }
