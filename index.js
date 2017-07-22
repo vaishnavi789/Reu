@@ -262,8 +262,10 @@ getAllQuestion().then(function(returnVal){
                         break;
                 }
 
-                  if (lCount >= low.length){
-                    if (req.body.result.parameters.yesno.length != 0) {
+                  else if (lCount >= low.length){
+                    if (req.body.result.parameters.number.length != 0) {
+                        lowAnswers.push(req.body.result.parameters.number);
+                    } else if (req.body.result.parameters.yesno.length != 0) {
                         lowAnswers.push(req.body.result.parameters.yesno);
                     }
 
@@ -320,7 +322,7 @@ getAllQuestion().then(function(returnVal){
                     break;
                 }
 
-                if (hot == 1){
+                  else if (hot == 1){
                     text = high[hCount].title;
 
                     if (req.body.result.parameters.number.length != 0) {
@@ -342,10 +344,12 @@ getAllQuestion().then(function(returnVal){
                     break;
                }
 
-                 if (cold == 1){
+                  else if (cold == 1){
                    text = low[lCount].title;
 
-                 if (req.body.result.parameters.yesno.length != 0) {
+                   if (req.body.result.parameters.number.length != 0) {
+                       lowAnswers.push(req.body.result.parameters.number);
+                   } else if (req.body.result.parameters.yesno.length != 0) {
                        lowAnswers.push(req.body.result.parameters.yesno);
                    }
                         lCount ++;
