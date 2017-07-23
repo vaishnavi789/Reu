@@ -262,7 +262,7 @@ getAllQuestion().then(function(returnVal){
                         break;
                 }
 
-                  else if (lCount >= low.length){
+                   if (lCount >= low.length){
                     if (req.body.result.parameters.number.length != 0) {
                         lowAnswers.push(req.body.result.parameters.number);
                     } else if (req.body.result.parameters.yesno.length != 0) {
@@ -352,10 +352,6 @@ getAllQuestion().then(function(returnVal){
                    } else if (req.body.result.parameters.yesno.length != 0) {
                        lowAnswers.push(req.body.result.parameters.yesno);
                    }
-                        if (lCount == 1){
-                          lCount = 1;
-                        }
-
                         lCount ++;
                         break;
               }
